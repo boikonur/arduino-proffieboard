@@ -128,6 +128,40 @@
 			    "size": "97427309"
 			}
 		    ]
+		},
+		{
+		    "name": "arm-none-eabi-gcc",
+		    "version": "9-2020-q2-update",
+		    "systems": [
+			{
+			    "host": "aarch64-linux-gnu",
+			    "url": "https://developer.arm.com/-/media/Files/downloads/gnu-rm/9-2020q2/gcc-arm-none-eabi-9-2020-q2-update-aarch64-linux.tar.bz2",
+			    "archiveFileName": "gcc-arm-none-eabi-9-2020-q2-update-aarch64-linux.tar.bz2",
+			    "checksum": "SHA-256:1f4165c25e2cff80e29870f409862487ba470afd436e245ba3c743108e17b8ac",
+			    "size": "152221158"
+			},
+			{
+			    "host": "x86_64-apple-darwin",
+			    "url": "https://developer.arm.com/-/media/Files/downloads/gnu-rm/9-2020q2/gcc-arm-none-eabi-9-2020-q2-update-mac.tar.bz2",
+			    "archiveFileName": "gcc-arm-none-eabi-9-2020-q2-update-mac.tar.bz2",
+			    "checksum": "SHA-256:bbb9b87e442b426eca3148fa74705c66b49a63f148902a0ea46f676ec24f9ac6",
+			    "size": "142999997"
+			},
+			{
+			    "host": "x86_64-pc-linux-gnu",
+			    "url": "https://developer.arm.com/-/media/Files/downloads/gnu-rm/9-2020q2/gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2",
+			    "archiveFileName": "gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2",
+			    "checksum": "SHA-256:5adc2ee03904571c2de79d5cfc0f7fe2a5c5f54f44da5b645c17ee57b217f11f",
+			    "size": "140360119",
+			},
+			{
+			    "host": "i686-mingw32",
+			    "url": "https://developer.arm.com/-/media/Files/downloads/gnu-rm/9-2020q2/gcc-arm-none-eabi-9-2020-q2-update-win32.zip",
+			    "archiveFileName": "gcc-arm-none-eabi-9-2020-q2-update-win32.zip",
+			    "checksum": "SHA-256:49d6029ecd176deaa437a15b3404f54792079a39f3b23cb46381b0e6fbbe9070",
+			    "size": "182304576",
+			},
+		    ]
 		}
       ]
     }
