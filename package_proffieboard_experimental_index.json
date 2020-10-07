@@ -97,7 +97,7 @@
           ],
           "toolsDependencies": [
             {
-              "packager": "arduino",
+              "packager": "proffieboard_experimental",
               "name": "arm-none-eabi-gcc",
               "version": "9-2020-q2-update"
             }
