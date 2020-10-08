@@ -126,6 +126,30 @@
               "version": "9-2020-q2-update"
             }
           ]
+        },
+        {
+          "name": "Proffieboard Experimental",
+          "architecture": "stm32l4",
+          "version": "2.2",
+          "category": "Contributed",
+          "help": {
+            "online": "https://github.com/profezzorn/arduino-proffieboard/issues"
+          },
+          "url": "https://github.com/profezzorn/arduino-proffieboard/archive/v2.2.tar.gz",
+          "archiveFileName": "arduino-proffieboard-v2.2.tar.gz",
+          "checksum": "SHA-256:f7031737dc40fd920363326caebf07e01b05dc1dfb437d02f3ec8a251be784a6",
+          "size": "22740919",
+          "boards": [
+            {"name": "Proffieboard"},
+            {"name": "Proffieboard V2"}
+          ],
+          "toolsDependencies": [
+            {
+              "packager": "proffieboard_experimental",
+              "name": "arm-none-eabi-gcc",
+              "version": "9-2020-q2-update"
+            }
+          ]
         }
       ],
 	    "tools": [
@@ -204,10 +228,10 @@
 			},
 			{
 			    "host": "i686-mingw32",
-			    "url": "https://developer.arm.com/-/media/Files/downloads/gnu-rm/9-2020q2/gcc-arm-none-eabi-9-2020-q2-update-win32.zip",
-			    "archiveFileName": "gcc-arm-none-eabi-9-2020-q2-update-win32.zip",
-			    "checksum": "SHA-256:49d6029ecd176deaa437a15b3404f54792079a39f3b23cb46381b0e6fbbe9070",
-			    "size": "182304576"
+			    "url": "https://fredrik.hubbe.net/lightsaber/gcc/gcc-arm-none-eabi-9-2020-q2-update-win32.tar.bz2",
+			    "archiveFileName": "gcc-arm-none-eabi-9-2020-q2-update-win32.tar.bz2",
+			    "checksum": "SHA-256:ef5ec2efe3efc424728a2150d125ac8207510eb53a5289ecba92d89e53398938",
+			    "size": "137841888"
 			}
 		    ]
 		}
