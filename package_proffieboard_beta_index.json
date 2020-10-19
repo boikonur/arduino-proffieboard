@@ -240,10 +240,68 @@
               "version": "4.8.3-2014q1"
             }
           ]
+        },
+        {
+          "name": "Proffieboard Experimental",
+          "architecture": "stm32l4",
+          "version": "2.2",
+          "category": "Contributed",
+          "help": {
+            "online": "https://github.com/profezzorn/arduino-proffieboard/issues"
+          },
+          "url": "https://github.com/profezzorn/arduino-proffieboard/archive/v2.2.tar.gz",
+          "archiveFileName": "arduino-proffieboard-v2.2.tar.gz",
+          "checksum": "SHA-256:f7031737dc40fd920363326caebf07e01b05dc1dfb437d02f3ec8a251be784a6",
+          "size": "22740919",
+          "boards": [
+            {"name": "Proffieboard"},
+            {"name": "Proffieboard V2"}
+          ],
+          "toolsDependencies": [
+            {
+              "packager": "proffieboard_experimental",
+              "name": "arm-none-eabi-gcc",
+              "version": "9-2020-q2-update"
+            }
+          ]
         }
 	  
       ],
       "tools": [
+		{
+		    "name": "arm-none-eabi-gcc",
+		    "version": "9-2020-q2-update",
+		    "systems": [
+			{
+			    "host": "aarch64-linux-gnu",
+			    "url": "https://developer.arm.com/-/media/Files/downloads/gnu-rm/9-2020q2/gcc-arm-none-eabi-9-2020-q2-update-aarch64-linux.tar.bz2",
+			    "archiveFileName": "gcc-arm-none-eabi-9-2020-q2-update-aarch64-linux.tar.bz2",
+			    "checksum": "SHA-256:1f4165c25e2cff80e29870f409862487ba470afd436e245ba3c743108e17b8ac",
+			    "size": "152221158"
+			},
+			{
+			    "host": "x86_64-apple-darwin",
+			    "url": "https://developer.arm.com/-/media/Files/downloads/gnu-rm/9-2020q2/gcc-arm-none-eabi-9-2020-q2-update-mac.tar.bz2",
+			    "archiveFileName": "gcc-arm-none-eabi-9-2020-q2-update-mac.tar.bz2",
+			    "checksum": "SHA-256:bbb9b87e442b426eca3148fa74705c66b49a63f148902a0ea46f676ec24f9ac6",
+			    "size": "142999997"
+			},
+			{
+			    "host": "x86_64-pc-linux-gnu",
+			    "url": "https://developer.arm.com/-/media/Files/downloads/gnu-rm/9-2020q2/gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2",
+			    "archiveFileName": "gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2",
+			    "checksum": "SHA-256:5adc2ee03904571c2de79d5cfc0f7fe2a5c5f54f44da5b645c17ee57b217f11f",
+			    "size": "140360119"
+			},
+			{
+			    "host": "i686-mingw32",
+			    "url": "https://fredrik.hubbe.net/lightsaber/gcc/gcc-arm-none-eabi-9-2020-q2-update-win32.tar.bz2",
+			    "archiveFileName": "gcc-arm-none-eabi-9-2020-q2-update-win32.tar.bz2",
+			    "checksum": "SHA-256:4a866bb1a36bc60bf837d8ea5a0f63df169b0077f67a62b63add0a8b47c694ea",
+			    "size": "182770344"
+			}
+		    ]
+		}
       ]
     }
   ]
