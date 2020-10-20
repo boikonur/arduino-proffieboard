@@ -242,7 +242,7 @@
           ]
         },
         {
-          "name": "Proffieboard Experimental",
+          "name": "Proffieboard",
           "architecture": "stm32l4",
           "version": "2.2",
           "category": "Contributed",
@@ -259,7 +259,7 @@
           ],
           "toolsDependencies": [
             {
-              "packager": "proffieboard_experimental",
+              "packager": "proffieboard",
               "name": "arm-none-eabi-gcc",
               "version": "9-2020-q2-update"
             }
