@@ -135,6 +135,21 @@ _out/stm32l433/%.o: %.S
 	$(CC) -DSTM32L433xx $(ASFLAGS) -c $< -o $@
 
 
+boot_stm32l452.o:: $(BOBJS_L452)
+	$(LD) -r -o $@ $^
+
+libstm32l452.a:: $(LOBJS_L452)
+	$(AR) rcs $@ $^
+
+_out/stm32l452/%.o: %.c
+	-@mkdir -p $(dir $@)
+	$(CC) -DSTM32L452xx $(CFLAGS) -c $< -o $@
+
+_out/stm32l452/%.o: %.S
+	-@mkdir -p $(dir $@)
+	$(CC) -DSTM32L452xx $(ASFLAGS) -c $< -o $@
+
+
 boot_stm32l476.o:: $(BOBJS_L476)
 	$(LD) -r -o $@ $^
 
@@ -165,15 +180,17 @@ _out/stm32l496/%.o: %.S
 	$(CC) -DSTM32L496xx $(ASFLAGS) -c $< -o $@
 
 clean::
-	rm -rf boot_stm32l432.o boot_stm32l433.o boot_stm32l476.o boot_stm32l496.o libstm32l432.a libstm32l433.a libstm32l476.a libstm32l496.a _out
+	rm -rf boot_stm32l432.o boot_stm32l433.o boot_stm32l452.o boot_stm32l476.o boot_stm32l496.o libstm32l432.a libstm32l433.a libstm32l452.a libstm32l476.a libstm32l496.a _out
 
 -include $(BOBJS_L432:.o=.d)
 -include $(BOBJS_L433:.o=.d)
+-include $(BOBJS_L452:.o=.d)
 -include $(BOBJS_L476:.o=.d)
 -include $(BOBJS_L496:.o=.d)
 
 -include $(LOBJS_L432:.o=.d)
 -include $(LOBJS_L433:.o=.d)
+-include $(LOBJS_L452:.o=.d)
 -include $(LOBJS_L476:.o=.d)
 -include $(LOBJS_L496:.o=.d)
 

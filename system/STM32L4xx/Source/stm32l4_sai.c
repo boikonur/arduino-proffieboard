@@ -730,7 +730,7 @@ bool stm32l4_sai_configure(stm32l4_sai_t *sai, uint32_t width, uint32_t clock, u
 
     if (clock)
     {
-#if defined(STM32L432xx) || defined(STM32L433xx) || defined(STM32L496xx)
+#if defined(STM32L432xx) || defined(STM32L433xx) || defined(STM32L452xx) || defined(STM32L496xx)
 	switch (clock) {
 	case 8000:  saiclk = SYSTEM_SAICLK_8192000;  sai_cr1 |= (2 << SAI_xCR1_MCKDIV_Pos); break;
 	case 16000: saiclk = SYSTEM_SAICLK_8192000;  sai_cr1 |= (1 << SAI_xCR1_MCKDIV_Pos); break;
@@ -745,7 +745,7 @@ bool stm32l4_sai_configure(stm32l4_sai_t *sai, uint32_t width, uint32_t clock, u
 	default:
 	    return false;
 	}
-#else /* defined(STM32L432xx) || defined(STM32L433xx) || defined(STM32L496xx) */
+#else
 	switch (clock) {
 	case 8000:  saiclk = SYSTEM_SAICLK_49152000; sai_cr1 |= (12 << SAI_xCR1_MCKDIV_Pos); break;
 	case 16000: saiclk = SYSTEM_SAICLK_49152000; sai_cr1 |= (6 << SAI_xCR1_MCKDIV_Pos);  break;
@@ -760,7 +760,7 @@ bool stm32l4_sai_configure(stm32l4_sai_t *sai, uint32_t width, uint32_t clock, u
 	default:
 	    return false;
 	}
-#endif /* defined(STM32L432xx) || defined(STM32L433xx) || defined(STM32L496xx) */
+#endif
     }
     else
     {
