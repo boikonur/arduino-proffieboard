@@ -693,7 +693,7 @@ bool stm32l4_i2c_create(stm32l4_i2c_t *i2c, unsigned int instance, const stm32l4
 	i2c->interrupt = I2C3_EV_IRQn;
 	break;
 
-#ifdef I2C3_BASE
+#ifdef I2C4_BASE
     case I2C_INSTANCE_I2C4:
 	i2c->I2C = I2C4;
 	i2c->interrupt = I2C4_EV_IRQn;

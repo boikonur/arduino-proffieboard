@@ -72,10 +72,10 @@ enum {
 #ifdef USART3_BASE
     SYSTEM_PERIPH_USART3,
 #endif
-#ifdef USART4_BASE
+#ifdef UART4_BASE
     SYSTEM_PERIPH_UART4,
 #endif    
-#ifdef USART5_BASE
+#ifdef UART5_BASE
     SYSTEM_PERIPH_UART5,
 #endif
     SYSTEM_PERIPH_LPUART1,
@@ -266,6 +266,11 @@ extern void     stm32l4_system_shutdown(uint32_t config, uint32_t timeout);
 extern void     stm32l4_system_reset(void);
 extern void     stm32l4_system_dfu(void);
 
+#define ASSERT_CONCAT_(a, b) a##b
+#define ASSERT_CONCAT(a, b) ASSERT_CONCAT_(a, b)
+#define stm32l4_ct_assert(e) enum { ASSERT_CONCAT(assert_line_, __LINE__) = 1/(!!(e)) }
+#define STM32L4_NELEM(X) (sizeof(X)/sizeof((X)[0]))
+  
 #ifdef __cplusplus
 }
 #endif

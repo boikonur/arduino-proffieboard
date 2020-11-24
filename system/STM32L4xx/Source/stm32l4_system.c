@@ -68,7 +68,7 @@ typedef struct _stm32l4_system_device_t {
 
 static stm32l4_system_device_t stm32l4_system_device;
 
-static volatile uint32_t * const stm32l4_system_xlate_RSTR[SYSTEM_PERIPH_COUNT] = {
+static volatile uint32_t * const stm32l4_system_xlate_RSTR[] = {
     &RCC->AHB1RSTR,  /* SYSTEM_PERIPH_FLASH */
     NULL,            /* SYSTEM_PERIPH_SRAM1 */
     NULL,            /* SYSTEM_PERIPH_SRAM2 */
@@ -107,10 +107,10 @@ static volatile uint32_t * const stm32l4_system_xlate_RSTR[SYSTEM_PERIPH_COUNT] 
 #ifdef USART3_BASE
     &RCC->APB1RSTR1, /* SYSTEM_PERIPH_USART3 */
 #endif
-#ifdef USART4_BASE
+#ifdef UART4_BASE
     &RCC->APB1RSTR1, /* SYSTEM_PERIPH_UART4 */
 #endif    
-#ifdef USART5_BASE
+#ifdef UART5_BASE
     &RCC->APB1RSTR1, /* SYSTEM_PERIPH_UART5 */
 #endif
     &RCC->APB1RSTR2, /* SYSTEM_PERIPH_LPUART1 */
@@ -167,7 +167,7 @@ static volatile uint32_t * const stm32l4_system_xlate_RSTR[SYSTEM_PERIPH_COUNT] 
     &RCC->APB1RSTR2, /* SYSTEM_PERIPH_LPTIM2 */
 };
 
-static uint32_t const stm32l4_system_xlate_RSTMSK[SYSTEM_PERIPH_COUNT] = {
+static uint32_t const stm32l4_system_xlate_RSTMSK[] = {
     RCC_AHB1RSTR_FLASHRST,    /* SYSTEM_PERIPH_FLASH */
     0,                        /* SYSTEM_PERIPH_SRAM1 */
     0,                        /* SYSTEM_PERIPH_SRAM2 */
@@ -259,14 +259,14 @@ static uint32_t const stm32l4_system_xlate_RSTMSK[SYSTEM_PERIPH_COUNT] = {
 #endif
     RCC_APB2RSTR_TIM15RST,    /* SYSTEM_PERIPH_TIM15 */
     RCC_APB2RSTR_TIM16RST,    /* SYSTEM_PERIPH_TIM16 */
-#idef TIM17_BASE
+#ifdef TIM17_BASE
     RCC_APB2RSTR_TIM17RST,    /* SYSTEM_PERIPH_TIM17 */
 #endif
     RCC_APB1RSTR1_LPTIM1RST,  /* SYSTEM_PERIPH_LPTIM1 */
     RCC_APB1RSTR2_LPTIM2RST,  /* SYSTEM_PERIPH_LPTIM2 */
 };
 
-static volatile uint32_t * const stm32l4_system_xlate_ENR[SYSTEM_PERIPH_COUNT] = {
+static volatile uint32_t * const stm32l4_system_xlate_ENR[] = {
     &RCC->AHB1ENR,  /* SYSTEM_PERIPH_FLASH */
     NULL,           /* SYSTEM_PERIPH_SRAM1 */
     NULL,           /* SYSTEM_PERIPH_SRAM2 */
@@ -365,7 +365,7 @@ static volatile uint32_t * const stm32l4_system_xlate_ENR[SYSTEM_PERIPH_COUNT] =
     &RCC->APB1ENR2, /* SYSTEM_PERIPH_LPTIM2 */
 };
 
-static uint32_t const stm32l4_system_xlate_ENMSK[SYSTEM_PERIPH_COUNT] = {
+static uint32_t const stm32l4_system_xlate_ENMSK[] = {
     RCC_AHB1ENR_FLASHEN,    /* SYSTEM_PERIPH_FLASH */
     0,                      /* SYSTEM_PERIPH_SRAM1 */
     0,                      /* SYSTEM_PERIPH_SRAM2 */
@@ -412,7 +412,7 @@ static uint32_t const stm32l4_system_xlate_ENMSK[SYSTEM_PERIPH_COUNT] = {
 #endif
     RCC_APB1ENR2_LPUART1EN, /* SYSTEM_PERIPH_LPUART1 */
     RCC_APB1ENR1_I2C1EN,    /* SYSTEM_PERIPH_I2C1 */
-#ifdef U2C2_BASE
+#ifdef I2C2_BASE
     RCC_APB1ENR1_I2C2EN,    /* SYSTEM_PERIPH_I2C2 */
 #endif
     RCC_APB1ENR1_I2C3EN,    /* SYSTEM_PERIPH_I2C3 */
@@ -464,7 +464,7 @@ static uint32_t const stm32l4_system_xlate_ENMSK[SYSTEM_PERIPH_COUNT] = {
     RCC_APB1ENR2_LPTIM2EN,  /* SYSTEM_PERIPH_LPTIM2 */
 };
 
-static volatile uint32_t * const stm32l4_system_xlate_SMENR[SYSTEM_PERIPH_COUNT] = {
+static volatile uint32_t * const stm32l4_system_xlate_SMENR[] = {
     &RCC->AHB1SMENR,  /* SYSTEM_PERIPH_FLASH */
     &RCC->AHB1SMENR,  /* SYSTEM_PERIPH_SRAM1 */
     &RCC->AHB2SMENR,  /* SYSTEM_PERIPH_SRAM2 */
@@ -515,7 +515,7 @@ static volatile uint32_t * const stm32l4_system_xlate_SMENR[SYSTEM_PERIPH_COUNT]
     &RCC->APB1SMENR1, /* SYSTEM_PERIPH_I2C2 */
 #endif
     &RCC->APB1SMENR1, /* SYSTEM_PERIPH_I2C3 */
-#ifdef I2C3_BASE
+#ifdef I2C4_BASE
     &RCC->APB1SMENR2, /* SYSTEM_PERIPH_I2C4 */
 #endif
     &RCC->APB2SMENR,  /* SYSTEM_PERIPH_SPI1 */
@@ -563,7 +563,7 @@ static volatile uint32_t * const stm32l4_system_xlate_SMENR[SYSTEM_PERIPH_COUNT]
     &RCC->APB1SMENR2, /* SYSTEM_PERIPH_LPTIM2 */
 };
 
-static uint32_t const stm32l4_system_xlate_SMENMSK[SYSTEM_PERIPH_COUNT] = {
+static uint32_t const stm32l4_system_xlate_SMENMSK[] = {
     RCC_AHB1SMENR_FLASHSMEN,    /* SYSTEM_PERIPH_FLASH */
     RCC_AHB1SMENR_SRAM1SMEN,    /* SYSTEM_PERIPH_SRAM1 */
     RCC_AHB2SMENR_SRAM2SMEN,    /* SYSTEM_PERIPH_SRAM2 */
@@ -661,6 +661,13 @@ static uint32_t const stm32l4_system_xlate_SMENMSK[SYSTEM_PERIPH_COUNT] = {
     RCC_APB1SMENR1_LPTIM1SMEN,  /* SYSTEM_PERIPH_LPTIM1 */
     RCC_APB1SMENR2_LPTIM2SMEN,  /* SYSTEM_PERIPH_LPTIM2 */
 };
+
+stm32l4_ct_assert(STM32L4_NELEM(stm32l4_system_xlate_RSTR) == SYSTEM_PERIPH_COUNT);
+stm32l4_ct_assert(STM32L4_NELEM(stm32l4_system_xlate_RSTMSK) == SYSTEM_PERIPH_COUNT);
+stm32l4_ct_assert(STM32L4_NELEM(stm32l4_system_xlate_ENR) == SYSTEM_PERIPH_COUNT);
+stm32l4_ct_assert(STM32L4_NELEM(stm32l4_system_xlate_ENMSK) == SYSTEM_PERIPH_COUNT);
+stm32l4_ct_assert(STM32L4_NELEM(stm32l4_system_xlate_SMENR) == SYSTEM_PERIPH_COUNT);
+stm32l4_ct_assert(STM32L4_NELEM(stm32l4_system_xlate_SMENMSK) == SYSTEM_PERIPH_COUNT);
 
 void stm32l4_system_periph_reset(unsigned int periph)
 {
