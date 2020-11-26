@@ -42,45 +42,65 @@ typedef struct _stm32l4_timer_driver_t {
 
 static stm32l4_timer_driver_t stm32l4_timer_driver;
 
-static TIM_TypeDef * const stm32l4_timer_xlate_TIM[TIMER_INSTANCE_COUNT] = {
+static TIM_TypeDef * const stm32l4_timer_xlate_TIM[] = {
     TIM1,
     TIM2,
-#if defined(STM32L476xx) || defined(STM32L496xx)
+#ifdef TIM3_BASE
     TIM3,
+#endif
+#ifdef TIM4_BASE
     TIM4,
+#endif
+#ifdef TIM5_BASE
     TIM5,
 #endif
+#ifdef TIM6_BASE
     TIM6,
+#endif
+#ifdef TIM7_BASE
     TIM7,
-#if defined(STM32L476xx) || defined(STM32L496xx)
+#endif
+#ifdef TIM8_BASE
     TIM8,
 #endif
     TIM15,
     TIM16,
-#if defined(STM32L476xx) || defined(STM32L496xx)
+#ifdef TIM17_BASE
     TIM17,
 #endif
 };
 
-static const IRQn_Type stm32l4_timer_xlate_IRQn[TIMER_INSTANCE_COUNT] = {
+stm32l4_ct_assert(STM32L4_NELEM(stm32l4_timer_xlate_TIM) == TIMER_INSTANCE_COUNT);
+
+static const IRQn_Type stm32l4_timer_xlate_IRQn[] = {
     TIM1_CC_IRQn,
     TIM2_IRQn,
-#if defined(STM32L476xx) || defined(STM32L496xx)
+#ifdef TIM3_BASE
     TIM3_IRQn,
+#endif    
+#ifdef TIM4_BASE
     TIM4_IRQn,
+#endif    
+#ifdef TIM5_BASE
     TIM5_IRQn,
 #endif
+#ifdef TIM6_BASE
     TIM6_DAC_IRQn,
+#endif    
+#ifdef TIM7_BASE
     TIM7_IRQn,
-#if defined(STM32L476xx) || defined(STM32L496xx)
+#endif    
+#ifdef TIM8_BASE
     TIM8_CC_IRQn,
 #endif
     TIM1_BRK_TIM15_IRQn,
     TIM1_UP_TIM16_IRQn,
-#if defined(STM32L476xx) || defined(STM32L496xx)
+#ifdef TIM17_BASE
     TIM1_TRG_COM_TIM17_IRQn,
 #endif
 };
+
+stm32l4_ct_assert(STM32L4_NELEM(stm32l4_timer_xlate_IRQn) == TIMER_INSTANCE_COUNT);
 
 static void stm32l4_timer_interrupt(stm32l4_timer_t *timer)
 {
@@ -185,14 +205,23 @@ uint32_t stm32l4_timer_clock(stm32l4_timer_t *timer)
 
     hclk = stm32l4_system_hclk();
 
-    if ((timer->instance == TIMER_INSTANCE_TIM2) ||
-#if defined(STM32L476xx) || defined(STM32L496xx)
-	(timer->instance == TIMER_INSTANCE_TIM3) ||
-	(timer->instance == TIMER_INSTANCE_TIM4) ||
-	(timer->instance == TIMER_INSTANCE_TIM5) ||
+    if ((timer->instance == TIMER_INSTANCE_TIM2)
+#ifdef TIM3_BASE
+	|| (timer->instance == TIMER_INSTANCE_TIM3)
 #endif
-	(timer->instance == TIMER_INSTANCE_TIM6) ||
-	(timer->instance == TIMER_INSTANCE_TIM7))
+#ifdef TIM4_BASE
+	|| (timer->instance == TIMER_INSTANCE_TIM4)
+#endif
+#ifdef TIM5_BASE
+	|| (timer->instance == TIMER_INSTANCE_TIM5)
+#endif
+#ifdef TIM6_BASE
+	|| (timer->instance == TIMER_INSTANCE_TIM6)
+#endif
+#ifdef TIM7_BASE
+	|| (timer->instance == TIMER_INSTANCE_TIM7)
+#endif	
+      )
     {
 	pclk = stm32l4_system_pclk1();
     }
@@ -286,13 +315,17 @@ bool stm32l4_timer_disable(stm32l4_timer_t *timer)
     case TIMER_INSTANCE_TIM2:
 	armv7m_atomic_and(&RCC->APB1ENR1, ~RCC_APB1ENR1_TIM2EN);
 	break;
-#if defined(STM32L476xx) || defined(STM32L496xx)
+#ifdef TIM3_BASE
     case TIMER_INSTANCE_TIM3:
 	armv7m_atomic_and(&RCC->APB1ENR1, ~RCC_APB1ENR1_TIM3EN);
 	break;
+#endif
+#ifdef TIM4_BASE
     case TIMER_INSTANCE_TIM4:
 	armv7m_atomic_and(&RCC->APB1ENR1, ~RCC_APB1ENR1_TIM4EN);
 	break;
+#endif
+#ifdef TIM5_BASE
     case TIMER_INSTANCE_TIM5:
 	armv7m_atomic_and(&RCC->APB1ENR1, ~RCC_APB1ENR1_TIM5EN);
 	break;
@@ -300,10 +333,12 @@ bool stm32l4_timer_disable(stm32l4_timer_t *timer)
     case TIMER_INSTANCE_TIM6:
 	armv7m_atomic_and(&RCC->APB1ENR1, ~RCC_APB1ENR1_TIM6EN);
 	break;
+#ifdef TIM7_BASE	
     case TIMER_INSTANCE_TIM7:
 	armv7m_atomic_and(&RCC->APB1ENR1, ~RCC_APB1ENR1_TIM7EN);
 	break;
-#if defined(STM32L476xx) || defined(STM32L496xx)
+#endif	
+#ifdef TIM8_BASE
     case TIMER_INSTANCE_TIM8:
 	armv7m_atomic_and(&RCC->APB2ENR, ~RCC_APB2ENR_TIM8EN);
 	break;
@@ -314,7 +349,7 @@ bool stm32l4_timer_disable(stm32l4_timer_t *timer)
     case TIMER_INSTANCE_TIM16:
 	armv7m_atomic_and(&RCC->APB2ENR, ~RCC_APB2ENR_TIM16EN);
 	break;
-#if defined(STM32L476xx) || defined(STM32L496xx)
+#ifdef TIM17_BASE
     case TIMER_INSTANCE_TIM17:
 	armv7m_atomic_and(&RCC->APB2ENR, ~RCC_APB2ENR_TIM17EN);
 	break;
@@ -345,13 +380,17 @@ bool stm32l4_timer_configure(stm32l4_timer_t *timer, uint32_t prescaler, uint32_
 	case TIMER_INSTANCE_TIM2:
 	    armv7m_atomic_or(&RCC->APB1ENR1, RCC_APB1ENR1_TIM2EN);
 	    break;
-#if defined(STM32L476xx) || defined(STM32L496xx)
+#ifdef TIM3_BASE
 	case TIMER_INSTANCE_TIM3:
 	    armv7m_atomic_or(&RCC->APB1ENR1, RCC_APB1ENR1_TIM3EN);
 	    break;
+#endif	    
+#ifdef TIM4_BASE
 	case TIMER_INSTANCE_TIM4:
 	    armv7m_atomic_or(&RCC->APB1ENR1, RCC_APB1ENR1_TIM4EN);
 	    break;
+#endif	    
+#ifdef TIM5_BASE
 	case TIMER_INSTANCE_TIM5:
 	    armv7m_atomic_or(&RCC->APB1ENR1, RCC_APB1ENR1_TIM5EN);
 	    break;
@@ -359,10 +398,12 @@ bool stm32l4_timer_configure(stm32l4_timer_t *timer, uint32_t prescaler, uint32_
 	case TIMER_INSTANCE_TIM6:
 	    armv7m_atomic_or(&RCC->APB1ENR1, RCC_APB1ENR1_TIM6EN);
 	    break;
+#ifdef TIM7_BASE
 	case TIMER_INSTANCE_TIM7:
 	    armv7m_atomic_or(&RCC->APB1ENR1, RCC_APB1ENR1_TIM7EN);
 	    break;
-#if defined(STM32L476xx) || defined(STM32L496xx)
+#endif	    
+#ifdef TIM8_BASE
 	case TIMER_INSTANCE_TIM8:
 	    armv7m_atomic_or(&RCC->APB2ENR, RCC_APB2ENR_TIM8EN);
 	    break;
@@ -740,7 +781,7 @@ void TIM1_UP_TIM16_IRQHandler(void)
     stm32l4_timer_interrupt(stm32l4_timer_driver.instances[TIMER_INSTANCE_TIM16]);
 }
 
-#if defined(STM32L476xx) || defined(STM32L496xx)
+#ifdef TIM17_BASE
 void TIM1_TRG_COM_TIM17_IRQHandler(void)
 {
     if (TIM1->SR & (TIM_SR_TIF | TIM_SR_COMIF))
@@ -770,23 +811,25 @@ void TIM2_IRQHandler(void)
     stm32l4_timer_interrupt(stm32l4_timer_driver.instances[TIMER_INSTANCE_TIM2]);
 }
 
-#if defined(STM32L476xx) || defined(STM32L496xx)
-
+#ifdef TIM3_BASE
 void TIM3_IRQHandler(void)
 {
     stm32l4_timer_interrupt(stm32l4_timer_driver.instances[TIMER_INSTANCE_TIM3]);
 }
+#endif
 
+#ifdef TIM4_BASE
 void TIM4_IRQHandler(void)
 {
     stm32l4_timer_interrupt(stm32l4_timer_driver.instances[TIMER_INSTANCE_TIM4]);
 }
+#endif
 
+#ifdef TIM5_BASE
 void TIM5_IRQHandler(void)
 {
     stm32l4_timer_interrupt(stm32l4_timer_driver.instances[TIMER_INSTANCE_TIM5]);
 }
-
 #endif
 
 void TIM6_DAC_IRQHandler(void)
@@ -794,13 +837,14 @@ void TIM6_DAC_IRQHandler(void)
     stm32l4_timer_interrupt(stm32l4_timer_driver.instances[TIMER_INSTANCE_TIM6]);
 }
 
+#ifdef TIM7_BASE
 void TIM7_IRQHandler(void)
 {
     stm32l4_timer_interrupt(stm32l4_timer_driver.instances[TIMER_INSTANCE_TIM7]);
 }
+#endif
 
-#if defined(STM32L476xx) || defined(STM32L496xx)
-
+#ifdef TIM8_BASE
 void TIM8_BRK_IRQHandler(void)
 {
     stm32l4_timer_interrupt(stm32l4_timer_driver.instances[TIMER_INSTANCE_TIM8]);
@@ -820,5 +864,4 @@ void TIM8_CC_IRQHandler(void)
 {
     stm32l4_timer_interrupt(stm32l4_timer_driver.instances[TIMER_INSTANCE_TIM8]);
 }
-
 #endif

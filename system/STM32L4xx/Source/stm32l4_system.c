@@ -57,7 +57,7 @@ typedef struct _stm32l4_system_device_t {
     uint8_t                   lsco;
     uint8_t                   lsi;
     uint8_t                   hsi16;
-#if defined(STM32L432xx) || defined(STM32L433xx) || defined(STM32L496xx)
+#if defined(STM32L432xx) || defined(STM32L433xx) || defined(STM32L452xx) || defined(STM32L496xx)
     uint8_t                   hsi48;
 #endif
     volatile uint32_t         lock[SYSTEM_LOCK_COUNT];
@@ -154,7 +154,9 @@ static volatile uint32_t * const stm32l4_system_xlate_RSTR[] = {
     &RCC->APB1RSTR1, /* SYSTEM_PERIPH_TIM5 */
 #endif
     &RCC->APB1RSTR1, /* SYSTEM_PERIPH_TIM6 */
+#ifdef TIM7_BASE    
     &RCC->APB1RSTR1, /* SYSTEM_PERIPH_TIM7 */
+#endif    
 #ifdef TIM8_BASE
     &RCC->APB2RSTR,  /* SYSTEM_PERIPH_TIM8 */
 #endif
@@ -253,7 +255,9 @@ static uint32_t const stm32l4_system_xlate_RSTMSK[] = {
     RCC_APB1RSTR1_TIM5RST,    /* SYSTEM_PERIPH_TIM5 */
 #endif
     RCC_APB1RSTR1_TIM6RST,    /* SYSTEM_PERIPH_TIM6 */
+#ifdef TIM7_BASE    
     RCC_APB1RSTR1_TIM7RST,    /* SYSTEM_PERIPH_TIM7 */
+#endif    
 #ifdef TIM8_BASE
     RCC_APB2RSTR_TIM8RST,     /* SYSTEM_PERIPH_TIM8 */
 #endif
@@ -352,7 +356,9 @@ static volatile uint32_t * const stm32l4_system_xlate_ENR[] = {
     &RCC->APB1ENR1, /* SYSTEM_PERIPH_TIM5 */
 #endif
     &RCC->APB1ENR1, /* SYSTEM_PERIPH_TIM6 */
+#ifdef TIM7_BASE
     &RCC->APB1ENR1, /* SYSTEM_PERIPH_TIM7 */
+#endif    
 #ifdef TIM8_BASE
     &RCC->APB2ENR,  /* SYSTEM_PERIPH_TIM8 */
 #endif
@@ -451,7 +457,9 @@ static uint32_t const stm32l4_system_xlate_ENMSK[] = {
     RCC_APB1ENR1_TIM5EN,    /* SYSTEM_PERIPH_TIM5 */
 #endif
     RCC_APB1ENR1_TIM6EN,    /* SYSTEM_PERIPH_TIM6 */
+#ifdef TIM7_BASE    
     RCC_APB1ENR1_TIM7EN,    /* SYSTEM_PERIPH_TIM7 */
+#endif    
 #ifdef TIM8_BASE
     RCC_APB2ENR_TIM8EN,     /* SYSTEM_PERIPH_TIM8 */
 #endif
@@ -550,7 +558,9 @@ static volatile uint32_t * const stm32l4_system_xlate_SMENR[] = {
     &RCC->APB1SMENR1, /* SYSTEM_PERIPH_TIM5 */
 #endif
     &RCC->APB1SMENR1, /* SYSTEM_PERIPH_TIM6 */
+#ifdef TIM7_BASE    
     &RCC->APB1SMENR1, /* SYSTEM_PERIPH_TIM7 */
+#endif    
 #ifdef TIM8_BASE
     &RCC->APB2SMENR,  /* SYSTEM_PERIPH_TIM8 */
 #endif
@@ -649,7 +659,9 @@ static uint32_t const stm32l4_system_xlate_SMENMSK[] = {
     RCC_APB1SMENR1_TIM5SMEN,    /* SYSTEM_PERIPH_TIM5 */
 #endif
     RCC_APB1SMENR1_TIM6SMEN,    /* SYSTEM_PERIPH_TIM6 */
+#ifdef TIM7_BASE    
     RCC_APB1SMENR1_TIM7SMEN,    /* SYSTEM_PERIPH_TIM7 */
+#endif    
 #ifdef TIM8_BASE
     RCC_APB2SMENR_TIM8SMEN,     /* SYSTEM_PERIPH_TIM8 */
 #endif

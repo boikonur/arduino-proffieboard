@@ -193,11 +193,11 @@ ProffieboardV2-L433CC.menu.opt.o3.build.flags.ldspecs=
 # ST ProffieboardV3-L452RE
 # ---------------------------------------
 ProffieboardV3-L452RE.name=Proffieboard V3
-ProffieboardV3-L452RE.vid.0=0x0483
-ProffieboardV3-L452RE.pid.0=0x374b
+ProffieboardV3-L452RE.vid.0=0x1209
+ProffieboardV3-L452RE.pid.0=0x6668
 
-ProffieboardV3-L452RE.upload.tool=stm32l4_openocd
-ProffieboardV3-L452RE.upload.protocol=stlink
+ProffieboardV3-L452RE.upload.tool=stm32l4_dfu
+ProffieboardV3-L452RE.upload.protocol=dfu
 ProffieboardV3-L452RE.upload.maximum_size=245760
 ProffieboardV3-L452RE.upload.use_1200bps_touch=true
 ProffieboardV3-L452RE.upload.wait_for_upload_port=false
@@ -205,18 +205,46 @@ ProffieboardV3-L452RE.upload.native_usb=false
 
 ProffieboardV3-L452RE.build.mcu=cortex-m4
 ProffieboardV3-L452RE.build.f_cpu=80000000L
-ProffieboardV3-L452RE.build.board=PROFFIEBOARDV3
+ProffieboardV3-L452RE.build.board=PROFFIEBOARD_V3
 ProffieboardV3-L452RE.build.arch=STM32L4
 ProffieboardV3-L452RE.build.core=stm32l4
-ProffieboardV3-L452RE.build.vid=0x0483
-ProffieboardV3-L452RE.build.pid=0x374b
+ProffieboardV3-L452RE.build.vid=0x1209
+ProffieboardV3-L452RE.build.pid=0x6668
 ProffieboardV3-L452RE.build.did=0xffff
-ProffieboardV3-L452RE.build.extra_flags=-DSTM32L452xx -D__FPU_PRESENT=1 -march=armv7e-m -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -mabi=aapcs -mslow-flash-data -fsingle-precision-constant {build.usb_flags}
+ProffieboardV3-L452RE.build.usb_manufacturer="hubbe.net"
+ProffieboardV3-L452RE.build.usb_product="Proffieboard"
+ProffieboardV3-L452RE.build.extra_flags=-DSTM32L452xx -DPROFFIEBOARD_VERSION=3 -D__FPU_PRESENT=1 -march=armv7e-m -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -mabi=aapcs -mslow-flash-data -fsingle-precision-constant -felide-constructors -ffast-math {build.usb_flags} {build.dosfs_flags}
 ProffieboardV3-L452RE.build.ldscript=linker_scripts/STM32L452RE_FLASH.ld
-ProffieboardV3-L452RE.build.openocdscript=openocd_scripts/stm32l452re_nucleo.cfg
-ProffieboardV3-L452RE.build.variant=STM32L452RE-ProffieboardV2
-ProffieboardV3-L452RE.build.variant_system_libs="-L{runtime.platform.path}/system/STM32L4xx/Lib" "-L{runtime.platform.path}/system/CMSIS/Lib" -lstm32l432 -larm_cortexM4lf_math
+ProffieboardV3-L452RE.build.openocdscript=openocd_scripts/stm32l452re.cfg
+ProffieboardV3-L452RE.build.variant=STM32L452RE-ProffieboardV3
+ProffieboardV3-L452RE.build.variant_system_libs="-L{runtime.platform.path}/system/STM32L4xx/Lib" "-L{runtime.platform.path}/system/CMSIS/Lib" -lstm32l452 -larm_cortexM4lf_math
 ProffieboardV3-L452RE.build.variant_system_include="-I{runtime.platform.path}/system/CMSIS/Include" "-I{runtime.platform.path}/system/CMSIS/Device/ST/STM32L4xx/Include" "-I{runtime.platform.path}/system/STM32L4xx/Include" 
+
+ProffieboardV3-L452RE.menu.usb.cdc=Serial
+ProffieboardV3-L452RE.menu.usb.cdc.build.usb_type=USB_TYPE_CDC
+ProffieboardV3-L452RE.menu.usb.cdc_msc=Serial + Mass Storage
+ProffieboardV3-L452RE.menu.usb.cdc_msc.build.usb_type=USB_TYPE_CDC_MSC
+ProffieboardV3-L452RE.menu.usb.cdc_hid=Serial + Keyboard + Mouse
+ProffieboardV3-L452RE.menu.usb.cdc_hid.build.usb_type=USB_TYPE_CDC_HID
+ProffieboardV3-L452RE.menu.usb.cdc_msc_hid=Serial + Mass Storage + Keyboard + Mouse
+ProffieboardV3-L452RE.menu.usb.cdc_msc_hid.build.usb_type=USB_TYPE_CDC_MSC_HID
+ProffieboardV3-L452RE.menu.usb.cdc_dap=Serial + CMSIS-DAP
+ProffieboardV3-L452RE.menu.usb.cdc_dap.build.usb_type=USB_TYPE_CDC_DAP
+ProffieboardV3-L452RE.menu.usb.cdc_msc_dap=Serial + Mass Storage + CMSIS-DAP
+ProffieboardV3-L452RE.menu.usb.cdc_msc_dap.build.usb_type=USB_TYPE_CDC_MSC_DAP
+ProffieboardV3-L452RE.menu.usb.cdc_webusb=Serial + WebUSB
+ProffieboardV3-L452RE.menu.usb.cdc_webusb.build.usb_type=USB_TYPE_CDC_WEBUSB
+ProffieboardV3-L452RE.menu.usb.cdc_msc_webusb=Serial + Mass Storage + WebUSB
+ProffieboardV3-L452RE.menu.usb.cdc_msc_webusb.build.usb_type=USB_TYPE_CDC_MSC_WEBUSB
+ProffieboardV3-L452RE.menu.usb.none=No USB
+ProffieboardV3-L452RE.menu.usb.none.build.usb_type=USB_TYPE_NONE
+
+ProffieboardV3-L452RE.menu.dosfs.sdspi=SDCARD (SPI)
+ProffieboardV3-L452RE.menu.dosfs.sdspi.build.dosfs_sdcard=1
+ProffieboardV3-L452RE.menu.dosfs.sdspi.build.dosfs_sflash=0
+ProffieboardV3-L452RE.menu.dosfs.none=None
+ProffieboardV3-L452RE.menu.dosfs.none.build.dosfs_sdcard=0
+ProffieboardV3-L452RE.menu.dosfs.none.build.dosfs_sflash=0
 
 ProffieboardV3-L452RE.menu.speed.80=80 MHz
 ProffieboardV3-L452RE.menu.speed.80.build.f_cpu=80000000L
@@ -230,15 +258,15 @@ ProffieboardV3-L452RE.menu.speed.32=32 MHz
 ProffieboardV3-L452RE.menu.speed.32.build.f_cpu=32000000L
 ProffieboardV3-L452RE.menu.speed.24=24 MHz
 ProffieboardV3-L452RE.menu.speed.24.build.f_cpu=24000000L
-ProffieboardV3-L452RE.menu.speed.16=16 MHz
+ProffieboardV3-L452RE.menu.speed.16=16 MHz (No USB)
 ProffieboardV3-L452RE.menu.speed.16.build.f_cpu=16000000L
-ProffieboardV3-L452RE.menu.speed.8=8 MHz
+ProffieboardV3-L452RE.menu.speed.8=8 MHz (No USB)
 ProffieboardV3-L452RE.menu.speed.8.build.f_cpu=8000000L
-ProffieboardV3-L452RE.menu.speed.4=4 MHz
+ProffieboardV3-L452RE.menu.speed.4=4 MHz (No USB)
 ProffieboardV3-L452RE.menu.speed.4.build.f_cpu=4000000L
-ProffieboardV3-L452RE.menu.speed.2=2 MHz
+ProffieboardV3-L452RE.menu.speed.2=2 MHz (No USB)
 ProffieboardV3-L452RE.menu.speed.2.build.f_cpu=2000000L
-ProffieboardV3-L452RE.menu.speed.1=1 MHz
+ProffieboardV3-L452RE.menu.speed.1=1 MHz (No USB)
 ProffieboardV3-L452RE.menu.speed.1.build.f_cpu=1000000L
 
 ProffieboardV3-L452RE.menu.opt.os=Smallest Code

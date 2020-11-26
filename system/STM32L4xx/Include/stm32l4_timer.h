@@ -41,21 +41,29 @@ extern "C" {
 enum {
     TIMER_INSTANCE_TIM1 = 0,   /* ADVANCED 16 */
     TIMER_INSTANCE_TIM2,       /* GENERAL  32 */
-#if defined(STM32L476xx) || defined(STM32L496xx)
+#ifdef TIM3_BASE
     TIMER_INSTANCE_TIM3,       /* GENERAL  16 */
+#endif    
+#ifdef TIM4_BASE
     TIMER_INSTANCE_TIM4,       /* GENERAL  16 */
+#endif    
+#ifdef TIM5_BASE
     TIMER_INSTANCE_TIM5,       /* GENERAL  32 */
-#endif /* defined(STM32L476xx) || defined(STM32L496xx) */
+#endif
+#ifdef TIM6_BASE
     TIMER_INSTANCE_TIM6,       /* BASIC    16 */
+#endif    
+#ifdef TIM7_BASE
     TIMER_INSTANCE_TIM7,       /* BASIC    16 */
-#if defined(STM32L476xx) || defined(STM32L496xx)
+#endif    
+#ifdef TIM8_BASE
     TIMER_INSTANCE_TIM8,       /* ADVANCED 16 */
-#endif /* defined(STM32L476xx) || defined(STM32L496xx) */
+#endif
     TIMER_INSTANCE_TIM15,      /* GENERAL  16 */
     TIMER_INSTANCE_TIM16,      /* GENERAL  16 */
-#if defined(STM32L476xx) || defined(STM32L496xx)
+#ifdef TIM17_BASE
     TIMER_INSTANCE_TIM17,      /* GENERAL  16 */
-#endif /* defined(STM32L476xx) || defined(STM32L496xx) */
+#endif
     TIMER_INSTANCE_COUNT
 };
 

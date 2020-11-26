@@ -119,7 +119,9 @@ enum {
     SYSTEM_PERIPH_TIM5,
 #endif
     SYSTEM_PERIPH_TIM6,
+#ifdef TIM7_BASE    
     SYSTEM_PERIPH_TIM7,
+#endif    
 #ifdef TIM8_BASE
     SYSTEM_PERIPH_TIM8,
 #endif

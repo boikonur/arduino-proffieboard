@@ -29,7 +29,11 @@ compiler.warning_flags.default=
 compiler.warning_flags.more=-Wall -Wno-strict-aliasing
 compiler.warning_flags.all=-Wall -Wextra
 
+## LOCAL CHANGE FOR ME
+runtime.tools.arm-none-eabi-gcc-9-2020-q2-update.path=/opt/gcc-arm-none-eabi-9-2020-q2-update
 compiler.path={runtime.tools.arm-none-eabi-gcc-9-2020-q2-update.path}/bin/
+
+#compiler.path={runtime.tools.arm-none-eabi-gcc.path}/bin/
 compiler.c.cmd=arm-none-eabi-gcc
 compiler.c.flags=-mcpu={build.mcu} -mthumb -c -g {build.flags.optimize} {compiler.warning_flags} -std=gnu11 -ffunction-sections -fdata-sections -nostdlib -MMD -flto
 compiler.c.elf.cmd=arm-none-eabi-gcc

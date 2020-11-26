@@ -92,6 +92,10 @@ BOBJS_L433 = $(patsubst %.c,_out/stm32l433/%.o,$(BSRCS))
 LSRCS_L433 = startup_stm32l433xx.S $(LSRCS) 
 LOBJS_L433 = $(patsubst %.S,_out/stm32l433/%.o,$(filter-out %.c,$(LSRCS_L433))) $(patsubst %.c,_out/stm32l433/%.o,$(filter-out %.S,$(LSRCS_L433)))
 
+BOBJS_L452 = $(patsubst %.c,_out/stm32l452/%.o,$(BSRCS))
+LSRCS_L452 = startup_stm32l452xx.S $(LSRCS) 
+LOBJS_L452 = $(patsubst %.S,_out/stm32l452/%.o,$(filter-out %.c,$(LSRCS_L452))) $(patsubst %.c,_out/stm32l452/%.o,$(filter-out %.S,$(LSRCS_L452)))
+
 BOBJS_L476 = $(patsubst %.c,_out/stm32l476/%.o,$(BSRCS))
 LSRCS_L476 = startup_stm32l476xx.S $(LSRCS) 
 LOBJS_L476 = $(patsubst %.S,_out/stm32l476/%.o,$(filter-out %.c,$(LSRCS_L476))) $(patsubst %.c,_out/stm32l476/%.o,$(filter-out %.S,$(LSRCS_L476)))
@@ -100,7 +104,7 @@ BOBJS_L496 = $(patsubst %.c,_out/stm32l496/%.o,$(BSRCS))
 LSRCS_L496 = startup_stm32l496xx.S $(LSRCS) 
 LOBJS_L496 = $(patsubst %.S,_out/stm32l496/%.o,$(filter-out %.c,$(LSRCS_L496))) $(patsubst %.c,_out/stm32l496/%.o,$(filter-out %.S,$(LSRCS_L496)))
 
-all:: boot_stm32l432.o boot_stm32l433.o boot_stm32l476.o boot_stm32l496.o libstm32l432.a libstm32l433.a libstm32l476.a  libstm32l496.a
+all:: boot_stm32l432.o boot_stm32l433.o boot_stm32l452.o boot_stm32l476.o boot_stm32l496.o libstm32l432.a libstm32l433.a libstm32l452.a libstm32l476.a  libstm32l496.a
 
 install: all
 	cp *.a *.o ../Lib
