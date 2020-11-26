@@ -188,6 +188,71 @@ ProffieboardV2-L433CC.menu.opt.o3=Fastest
 ProffieboardV2-L433CC.menu.opt.o3.build.flags.optimize=-O3
 ProffieboardV2-L433CC.menu.opt.o3.build.flags.ldspecs=
 
+##############################################################
+
+# ST ProffieboardV3-L452RE
+# ---------------------------------------
+ProffieboardV3-L452RE.name=Proffieboard V3
+ProffieboardV3-L452RE.vid.0=0x0483
+ProffieboardV3-L452RE.pid.0=0x374b
+
+ProffieboardV3-L452RE.upload.tool=stm32l4_openocd
+ProffieboardV3-L452RE.upload.protocol=stlink
+ProffieboardV3-L452RE.upload.maximum_size=245760
+ProffieboardV3-L452RE.upload.use_1200bps_touch=true
+ProffieboardV3-L452RE.upload.wait_for_upload_port=false
+ProffieboardV3-L452RE.upload.native_usb=false
+
+ProffieboardV3-L452RE.build.mcu=cortex-m4
+ProffieboardV3-L452RE.build.f_cpu=80000000L
+ProffieboardV3-L452RE.build.board=PROFFIEBOARDV3
+ProffieboardV3-L452RE.build.arch=STM32L4
+ProffieboardV3-L452RE.build.core=stm32l4
+ProffieboardV3-L452RE.build.vid=0x0483
+ProffieboardV3-L452RE.build.pid=0x374b
+ProffieboardV3-L452RE.build.did=0xffff
+ProffieboardV3-L452RE.build.extra_flags=-DSTM32L452xx -D__FPU_PRESENT=1 -march=armv7e-m -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -mabi=aapcs -mslow-flash-data -fsingle-precision-constant {build.usb_flags}
+ProffieboardV3-L452RE.build.ldscript=linker_scripts/STM32L452RE_FLASH.ld
+ProffieboardV3-L452RE.build.openocdscript=openocd_scripts/stm32l452re_nucleo.cfg
+ProffieboardV3-L452RE.build.variant=STM32L452RE-ProffieboardV2
+ProffieboardV3-L452RE.build.variant_system_libs="-L{runtime.platform.path}/system/STM32L4xx/Lib" "-L{runtime.platform.path}/system/CMSIS/Lib" -lstm32l432 -larm_cortexM4lf_math
+ProffieboardV3-L452RE.build.variant_system_include="-I{runtime.platform.path}/system/CMSIS/Include" "-I{runtime.platform.path}/system/CMSIS/Device/ST/STM32L4xx/Include" "-I{runtime.platform.path}/system/STM32L4xx/Include" 
+
+ProffieboardV3-L452RE.menu.speed.80=80 MHz
+ProffieboardV3-L452RE.menu.speed.80.build.f_cpu=80000000L
+ProffieboardV3-L452RE.menu.speed.72=72 MHz
+ProffieboardV3-L452RE.menu.speed.72.build.f_cpu=72000000L
+ProffieboardV3-L452RE.menu.speed.64=64 MHz
+ProffieboardV3-L452RE.menu.speed.64.build.f_cpu=64000000L
+ProffieboardV3-L452RE.menu.speed.48=48 MHz
+ProffieboardV3-L452RE.menu.speed.48.build.f_cpu=48000000L
+ProffieboardV3-L452RE.menu.speed.32=32 MHz
+ProffieboardV3-L452RE.menu.speed.32.build.f_cpu=32000000L
+ProffieboardV3-L452RE.menu.speed.24=24 MHz
+ProffieboardV3-L452RE.menu.speed.24.build.f_cpu=24000000L
+ProffieboardV3-L452RE.menu.speed.16=16 MHz
+ProffieboardV3-L452RE.menu.speed.16.build.f_cpu=16000000L
+ProffieboardV3-L452RE.menu.speed.8=8 MHz
+ProffieboardV3-L452RE.menu.speed.8.build.f_cpu=8000000L
+ProffieboardV3-L452RE.menu.speed.4=4 MHz
+ProffieboardV3-L452RE.menu.speed.4.build.f_cpu=4000000L
+ProffieboardV3-L452RE.menu.speed.2=2 MHz
+ProffieboardV3-L452RE.menu.speed.2.build.f_cpu=2000000L
+ProffieboardV3-L452RE.menu.speed.1=1 MHz
+ProffieboardV3-L452RE.menu.speed.1.build.f_cpu=1000000L
+
+ProffieboardV3-L452RE.menu.opt.os=Smallest Code
+ProffieboardV3-L452RE.menu.opt.os.build.flags.optimize=-Os
+ProffieboardV3-L452RE.menu.opt.os.build.flags.ldspecs=--specs=nano.specs
+ProffieboardV3-L452RE.menu.opt.o1=Fast
+ProffieboardV3-L452RE.menu.opt.o1.build.flags.optimize=-O1
+ProffieboardV3-L452RE.menu.opt.o1.build.flags.ldspecs=
+ProffieboardV3-L452RE.menu.opt.o2=Faster
+ProffieboardV3-L452RE.menu.opt.o2.build.flags.optimize=-O2
+ProffieboardV3-L452RE.menu.opt.o2.build.flags.ldspecs=
+ProffieboardV3-L452RE.menu.opt.o3=Fastest
+ProffieboardV3-L452RE.menu.opt.o3.build.flags.optimize=-O3
+ProffieboardV3-L452RE.menu.opt.o3.build.flags.ldspecs=
 
 ##############################################################
 
@@ -614,70 +679,6 @@ NUCLEO-L432KC.menu.opt.o3=Fastest
 NUCLEO-L432KC.menu.opt.o3.build.flags.optimize=-O3
 NUCLEO-L432KC.menu.opt.o3.build.flags.ldspecs=
 
-
-# ST NUCLEO-L452RE
-# ---------------------------------------
-NUCLEO-L452RE.name=NUCLEO-L452RE
-NUCLEO-L452RE.vid.0=0x0483
-NUCLEO-L452RE.pid.0=0x374b
-
-NUCLEO-L452RE.upload.tool=stm32l4_openocd
-NUCLEO-L452RE.upload.protocol=stlink
-NUCLEO-L452RE.upload.maximum_size=245760
-NUCLEO-L452RE.upload.use_1200bps_touch=true
-NUCLEO-L452RE.upload.wait_for_upload_port=false
-NUCLEO-L452RE.upload.native_usb=false
-
-NUCLEO-L452RE.build.mcu=cortex-m4
-NUCLEO-L452RE.build.f_cpu=80000000L
-NUCLEO-L452RE.build.board=STM32L4_NUCLEO
-NUCLEO-L452RE.build.arch=STM32L4
-NUCLEO-L452RE.build.core=stm32l4
-NUCLEO-L452RE.build.vid=0x0483
-NUCLEO-L452RE.build.pid=0x374b
-NUCLEO-L452RE.build.did=0xffff
-NUCLEO-L452RE.build.extra_flags=-DSTM32L452xx -D__FPU_PRESENT=1 -march=armv7e-m -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -mabi=aapcs -mslow-flash-data -fsingle-precision-constant {build.usb_flags}
-NUCLEO-L452RE.build.ldscript=linker_scripts/STM32L452RE_FLASH.ld
-NUCLEO-L452RE.build.openocdscript=openocd_scripts/stm32l452re_nucleo.cfg
-NUCLEO-L452RE.build.variant=STM32L452RE-NUCLEO
-NUCLEO-L452RE.build.variant_system_libs="-L{runtime.platform.path}/system/STM32L4xx/Lib" "-L{runtime.platform.path}/system/CMSIS/Lib" -lstm32l432 -larm_cortexM4lf_math
-NUCLEO-L452RE.build.variant_system_include="-I{runtime.platform.path}/system/CMSIS/Include" "-I{runtime.platform.path}/system/CMSIS/Device/ST/STM32L4xx/Include" "-I{runtime.platform.path}/system/STM32L4xx/Include" 
-
-NUCLEO-L452RE.menu.speed.80=80 MHz
-NUCLEO-L452RE.menu.speed.80.build.f_cpu=80000000L
-NUCLEO-L452RE.menu.speed.72=72 MHz
-NUCLEO-L452RE.menu.speed.72.build.f_cpu=72000000L
-NUCLEO-L452RE.menu.speed.64=64 MHz
-NUCLEO-L452RE.menu.speed.64.build.f_cpu=64000000L
-NUCLEO-L452RE.menu.speed.48=48 MHz
-NUCLEO-L452RE.menu.speed.48.build.f_cpu=48000000L
-NUCLEO-L452RE.menu.speed.32=32 MHz
-NUCLEO-L452RE.menu.speed.32.build.f_cpu=32000000L
-NUCLEO-L452RE.menu.speed.24=24 MHz
-NUCLEO-L452RE.menu.speed.24.build.f_cpu=24000000L
-NUCLEO-L452RE.menu.speed.16=16 MHz
-NUCLEO-L452RE.menu.speed.16.build.f_cpu=16000000L
-NUCLEO-L452RE.menu.speed.8=8 MHz
-NUCLEO-L452RE.menu.speed.8.build.f_cpu=8000000L
-NUCLEO-L452RE.menu.speed.4=4 MHz
-NUCLEO-L452RE.menu.speed.4.build.f_cpu=4000000L
-NUCLEO-L452RE.menu.speed.2=2 MHz
-NUCLEO-L452RE.menu.speed.2.build.f_cpu=2000000L
-NUCLEO-L452RE.menu.speed.1=1 MHz
-NUCLEO-L452RE.menu.speed.1.build.f_cpu=1000000L
-
-NUCLEO-L452RE.menu.opt.os=Smallest Code
-NUCLEO-L452RE.menu.opt.os.build.flags.optimize=-Os
-NUCLEO-L452RE.menu.opt.os.build.flags.ldspecs=--specs=nano.specs
-NUCLEO-L452RE.menu.opt.o1=Fast
-NUCLEO-L452RE.menu.opt.o1.build.flags.optimize=-O1
-NUCLEO-L452RE.menu.opt.o1.build.flags.ldspecs=
-NUCLEO-L452RE.menu.opt.o2=Faster
-NUCLEO-L452RE.menu.opt.o2.build.flags.optimize=-O2
-NUCLEO-L452RE.menu.opt.o2.build.flags.ldspecs=
-NUCLEO-L452RE.menu.opt.o3=Fastest
-NUCLEO-L452RE.menu.opt.o3.build.flags.optimize=-O3
-NUCLEO-L452RE.menu.opt.o3.build.flags.ldspecs=
 
 
 # ST NUCLEO-L476RG
