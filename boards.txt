@@ -198,7 +198,7 @@ ProffieboardV3-L452RE.pid.0=0x6668
 
 ProffieboardV3-L452RE.upload.tool=stm32l4_dfu
 ProffieboardV3-L452RE.upload.protocol=dfu
-ProffieboardV3-L452RE.upload.maximum_size=245760
+ProffieboardV3-L452RE.upload.maximum_size=507904
 ProffieboardV3-L452RE.upload.use_1200bps_touch=true
 ProffieboardV3-L452RE.upload.wait_for_upload_port=false
 ProffieboardV3-L452RE.upload.native_usb=false
