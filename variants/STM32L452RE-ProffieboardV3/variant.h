@@ -183,7 +183,7 @@ static const uint8_t SCL = PIN_WIRE_SCL;
 #define PIN_I2S1_MCK         (22u)
 
 
-#define PWM_INSTANCE_COUNT   4
+#define PWM_INSTANCE_COUNT   5
 
 #ifdef __cplusplus
 }

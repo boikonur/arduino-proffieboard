@@ -32,13 +32,14 @@
 
 #define PWM_INSTANCE_TIM1      0
 #define PWM_INSTANCE_TIM2      1
-#define PWM_INSTANCE_TIM15     2
-#define PWM_INSTANCE_TIM16     3
+#define PWM_INSTANCE_TIM3      2
+#define PWM_INSTANCE_TIM15     3
+#define PWM_INSTANCE_TIM16     4
 
 /*
  * Pins descriptions
  */
-extern const PinDescription g_APinDescription[NUM_TOTAL_PINS] =
+extern const PinDescription g_APinDescription[] =
 {
   // 0, neopixels 3, DAC
   { GPIOA, GPIO_PIN_MASK(GPIO_PIN_PA4),  GPIO_PIN_PA4,             (PIN_ATTR_ADC | PIN_ATTR_DAC | PIN_ATTR_EXTI),   PWM_INSTANCE_NONE,  PWM_CHANNEL_NONE, ADC_INPUT_9    },
@@ -94,14 +95,23 @@ extern const PinDescription g_APinDescription[NUM_TOTAL_PINS] =
   { GPIOA, GPIO_PIN_MASK(GPIO_PIN_PA9),  GPIO_PIN_PA9,            (PIN_ATTR_EXTI),                                  PWM_INSTANCE_NONE,  PWM_CHANNEL_NONE, ADC_INPUT_NONE },
   // 26, I2S Data
   { GPIOA, GPIO_PIN_MASK(GPIO_PIN_PA10), GPIO_PIN_PA10,           (PIN_ATTR_EXTI | PIN_ATTR_PWM),                   PWM_INSTANCE_NONE,  PWM_CHANNEL_NONE, ADC_INPUT_NONE },
+
+
+  // TODO: Add new pins!
+  // Goals, PWM, serial, SPI
 };
 
-extern const unsigned int g_PWMInstances[PWM_INSTANCE_COUNT] = {
+stm32l4_ct_assert(STM32L4_NELEM(g_APinDescription) ==  NUM_TOTAL_PINS);
+
+extern const unsigned int g_PWMInstances[] = {
     TIMER_INSTANCE_TIM1,
     TIMER_INSTANCE_TIM2,
+    TIMER_INSTANCE_TIM3,
     TIMER_INSTANCE_TIM15,
     TIMER_INSTANCE_TIM16,
 };
+
+stm32l4_ct_assert(STM32L4_NELEM(g_PWMInstances) ==  PWM_INSTANCE_COUNT);
 
 // Serial1Pins is the same as Neopixels 2 & LED 3.
 extern const stm32l4_uart_pins_t g_Serial1Pins = { GPIO_PIN_PB11_USART3_RX, GPIO_PIN_PB10_USART3_TX, GPIO_PIN_NONE, GPIO_PIN_NONE };

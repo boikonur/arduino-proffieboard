@@ -245,6 +245,12 @@ ProffieboardV3-L452RE.menu.dosfs.sdspi.build.dosfs_sflash=0
 ProffieboardV3-L452RE.menu.dosfs.none=None
 ProffieboardV3-L452RE.menu.dosfs.none.build.dosfs_sdcard=0
 ProffieboardV3-L452RE.menu.dosfs.none.build.dosfs_sflash=0
+ProffieboardV3-L452RE.menu.dosfs.sdmmc=SDCARD (SDIO Default Speed)
+ProffieboardV3-L452RE.menu.dosfs.sdmmc.build.dosfs_sdcard=2
+ProffieboardV3-L452RE.menu.dosfs.sdmmc.build.dosfs_sflash=0
+ProffieboardV3-L452RE.menu.dosfs.sdmmc1=SDCARD (SDIO High Speed)
+ProffieboardV3-L452RE.menu.dosfs.sdmmc1.build.dosfs_sdcard=3
+ProffieboardV3-L452RE.menu.dosfs.sdmmc1.build.dosfs_sflash=0
 
 ProffieboardV3-L452RE.menu.speed.80=80 MHz
 ProffieboardV3-L452RE.menu.speed.80.build.f_cpu=80000000L
