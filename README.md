@@ -40,21 +40,21 @@
 
 ### How do I know if uploads are working?
 
- Look at the bottom secton of the arduino program. The progress of the upload will show in red text. Unfortunately arduino will not scroll down automatically as uploads are taking place, so if you want to see how it's doing you have to  keep scrolling down while it's working.
+ Look at the bottom section of the arduino program. The progress of the upload will show in red text. Unfortunately, arduino will not scroll down automatically as uploads are taking place, so if you want to see how it's doing you have to keep scrolling down while it's working.
 
 ### Recovering from a broken upload
 
- Sometimes a faulty sketch can render the normal USB Serial based integration into the Arduindo IDE not working. In this case plugin the Proffieboard and toggle the RESET button while holding down the BOOT button and program a known to be working sketch to go ack to a working USB Serial setup.
+ Sometimes a faulty sketch can render the normal USB Serial based integration into the Arduino IDE not working. In this case plug in the Proffieboard and toggle the RESET button while holding down the BOOT button and program a known to be working sketch to go back to a working USB Serial setup.
 
 ### Connection issues
 
 #### Windows 10
- Go to the control panel and click on Bluetooth & other devices. It should either show "Proffieboard" or "STM32 BOOTLOADER". If you hold BOOT and click RESET, is hould show "STM32 BOOTLOADER". If neither show up, try a different USB port or cable.
+ Go to the control panel and click on Bluetooth & other devices. It should either show "Proffieboard" or "STM32 BOOTLOADER". If you hold BOOT and click RESET, it should show "STM32 BOOTLOADER". If neither show up, try a different USB port or cable.
 
 #### Linux
  Running ```sudo tail -f /var/log/kern.log``` will show you when things connect and disconnect, the lsusb command is also helpful.
 
-## Altenative installation method for developers
+## Alternative installation method for developers
 
  1. ```cd <SKETCHBOOK>```, where ```<SKETCHBOOK>``` is your Arduino Sketch folder:
   * OS X: ```~/Documents/Arduino```
@@ -68,4 +68,3 @@
 ## Credits
 
 This core is based on the [Arduino STM32L4 Core](https://github.com/GrumpyOldPizza/arduino-STM32L4). For now, the boards from the original core are still supported by this core.
-
