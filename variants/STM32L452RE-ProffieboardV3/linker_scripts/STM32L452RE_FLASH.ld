@@ -60,9 +60,8 @@
 
 MEMORY
 {
-   FLASH (rx)  : ORIGIN = 0x08000000, LENGTH = 0x0007c000
-   SRAM1 (rwx) : ORIGIN = 0x20000000, LENGTH = 0x00020000
-   SRAM2 (rwx) : ORIGIN = 0x10000000, LENGTH = 0x00008000
+   FLASH (rx)  : ORIGIN = 0x08000000, LENGTH = 512K
+   SRAM1 (rwx) : ORIGIN = 0x20000000, LENGTH = 160k
 }
 
 ENTRY(Reset_Handler)
@@ -73,8 +72,8 @@ SECTIONS
    {
        KEEP(*(.boot_isr_vector))
        KEEP(*(.bootcode .bootcode*))
-       KEEP(boot_stm32l432.o(.text .text*))
-       KEEP(boot_stm32l432.o(.rodata .rodata*))
+       KEEP(boot_stm32l433.o(.text .text*))
+       KEEP(boot_stm32l433.o(.rodata .rodata*))
        KEEP(*(.iap_prefix));
        . = 1024;
    } > FLASH
