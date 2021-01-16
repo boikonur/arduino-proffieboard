@@ -45,17 +45,23 @@ enum {
     SYSTEM_PERIPH_DMA2,
     SYSTEM_PERIPH_GPIOA,
     SYSTEM_PERIPH_GPIOB,
-#if defined(STM32L433xx) || defined(STM32L476xx) || defined(STM32L496xx)
+#ifdef GPIOC_BASE
     SYSTEM_PERIPH_GPIOC,
+#endif    
+#ifdef GPIOD_BASE
     SYSTEM_PERIPH_GPIOD,
+#endif    
+#ifdef GPIOE_BASE
     SYSTEM_PERIPH_GPIOE,
 #endif
-#if defined(STM32L476xx) || defined(STM32L496xx)
+#ifdef GPIOF_BASE
     SYSTEM_PERIPH_GPIOF,
+#endif    
+#ifdef GPIOG_BASE
     SYSTEM_PERIPH_GPIOG,
 #endif
     SYSTEM_PERIPH_GPIOH,
-#if defined(STM32L496xx)
+#ifdef GPIOI_BASE
     SYSTEM_PERIPH_GPIOI,
 #endif
     SYSTEM_PERIPH_ADC,
@@ -63,55 +69,65 @@ enum {
     SYSTEM_PERIPH_USB,
     SYSTEM_PERIPH_USART1,
     SYSTEM_PERIPH_USART2,
-#if defined(STM32L433xx) || defined(STM32L476xx) || defined(STM32L496xx)
+#ifdef USART3_BASE
     SYSTEM_PERIPH_USART3,
 #endif
-#if defined(STM32L476xx) || defined(STM32L496xx)
+#ifdef UART4_BASE
     SYSTEM_PERIPH_UART4,
+#endif    
+#ifdef UART5_BASE
     SYSTEM_PERIPH_UART5,
 #endif
     SYSTEM_PERIPH_LPUART1,
     SYSTEM_PERIPH_I2C1,
-#if defined(STM32L433xx) || defined(STM32L476xx) || defined(STM32L496xx)
+#ifdef I2C2_BASE
     SYSTEM_PERIPH_I2C2,
 #endif
     SYSTEM_PERIPH_I2C3,
-#if defined(STM32L496xx)
+#ifdef I2C4_BASE
     SYSTEM_PERIPH_I2C4,
 #endif
     SYSTEM_PERIPH_SPI1,
-#if defined(STM32L433xx) || defined(STM32L476xx) || defined(STM32L496xx)
+#ifdef SPI2_BASE
     SYSTEM_PERIPH_SPI2,
 #endif
     SYSTEM_PERIPH_SPI3,
     SYSTEM_PERIPH_CAN1,
-#if defined(STM32L496xx)
+#ifdef CAN2_BASE
     SYSTEM_PERIPH_CAN2,
 #endif
     SYSTEM_PERIPH_QSPI,
-#if defined(STM32L433xx) || defined(STM32L476xx) || defined(STM32L496xx)
+#ifdef SDMMC1_BASE
     SYSTEM_PERIPH_SDMMC1,
 #endif
     SYSTEM_PERIPH_SAI1,
-#if defined(STM32L476xx) || defined(STM32L496xx)
+#ifdef SAI2_BASE
     SYSTEM_PERIPH_SAI2,
+#endif
+#ifdef DFSDM1_BASE    
     SYSTEM_PERIPH_DFSDM1,
 #endif
     SYSTEM_PERIPH_TIM1,
     SYSTEM_PERIPH_TIM2,
-#if defined(STM32L476xx) || defined(STM32L496xx)
+#ifdef TIM3_BASE
     SYSTEM_PERIPH_TIM3,
+#endif
+#ifdef TIM4_BASE
     SYSTEM_PERIPH_TIM4,
+#endif
+#ifdef TIM5_BASE
     SYSTEM_PERIPH_TIM5,
 #endif
     SYSTEM_PERIPH_TIM6,
+#ifdef TIM7_BASE    
     SYSTEM_PERIPH_TIM7,
-#if defined(STM32L476xx) || defined(STM32L496xx)
+#endif    
+#ifdef TIM8_BASE
     SYSTEM_PERIPH_TIM8,
 #endif
     SYSTEM_PERIPH_TIM15,
     SYSTEM_PERIPH_TIM16,
-#if defined(STM32L476xx) || defined(STM32L496xx)
+#ifdef TIM17_BASE
     SYSTEM_PERIPH_TIM17,
 #endif
     SYSTEM_PERIPH_LPTIM1,
@@ -171,16 +187,16 @@ typedef void (*stm32l4_system_callback_t)(void *context, uint32_t events);
 #define SYSTEM_WAKEUP_SYNC            0x00000400
 #define SYSTEM_WAKEUP_TIMEOUT         0x00000800
 
-#if defined(STM32L432xx) || defined(STM32L433xx) || defined(STM32L496xx)
+#if defined(STM32L432xx) || defined(STM32L433xx) || defined(STM32L452xx) || defined(STM32L496xx)
 #define SYSTEM_SAICLK_NONE            0
 #define SYSTEM_SAICLK_8192000         8192000   /*  32000 * 256 */
 #define SYSTEM_SAICLK_11289600        11289600  /*  44100 * 256 */
 #define SYSTEM_SAICLK_24576000        24576000  /*  96000 * 256 */
-#else /* defined(STM32L432xx) || defined(STM32L433xx) || defined(STM32L496xx) */
+#else
 #define SYSTEM_SAICLK_NONE            0
 #define SYSTEM_SAICLK_11289600        11289600  /*  44100 * 256 */
 #define SYSTEM_SAICLK_49152000        49152000  /* 192000 * 256 */
-#endif /* defined(STM32L432xx) || defined(STM32L433xx) || defined(STM32L496xx) */
+#endif
 
 #define SYSTEM_CLK48_REFERENCE_USB    0x00000001
 #define SYSTEM_CLK48_REFERENCE_RNG    0x00000002
@@ -194,7 +210,7 @@ typedef void (*stm32l4_system_callback_t)(void *context, uint32_t events);
 #define SYSTEM_MCO_MODE_PLL           5
 #define SYSTEM_MCO_MODE_LSI           6
 #define SYSTEM_MCO_MODE_LSE           7
-#if defined(STM32L432xx) || defined(STM32L433xx) || defined(STM32L496xx)
+#if defined(STM32L432xx) || defined(STM32L433xx) || defined(STM32L452xx) || defined(STM32L496xx)
 #define SYSTEM_MCO_MODE_HSI48         8
 #endif
 
@@ -252,6 +268,11 @@ extern void     stm32l4_system_shutdown(uint32_t config, uint32_t timeout);
 extern void     stm32l4_system_reset(void);
 extern void     stm32l4_system_dfu(void);
 
+#define ASSERT_CONCAT_(a, b) a##b
+#define ASSERT_CONCAT(a, b) ASSERT_CONCAT_(a, b)
+#define stm32l4_ct_assert(e) enum { ASSERT_CONCAT(assert_line_, __LINE__) = 1/(!!(e)) }
+#define STM32L4_NELEM(X) (sizeof(X)/sizeof((X)[0]))
+  
 #ifdef __cplusplus
 }
 #endif

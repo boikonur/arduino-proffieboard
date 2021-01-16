@@ -108,7 +108,11 @@ bool stm32l4_dac_disable(stm32l4_dac_t *dac)
 	return false;
     }
 
-    DACx->CR &= ~(DAC_CR_EN1 | DAC_CR_EN2);
+    DACx->CR &= ~(DAC_CR_EN1
+#ifdef DAC_CR_EN2		  
+		  | DAC_CR_EN2
+#endif		  
+      );
 
     dac->events = 0;
     dac->callback = NULL;
@@ -226,6 +230,7 @@ bool stm32l4_dac_channel(stm32l4_dac_t *dac, unsigned int channel, uint32_t outp
 	    DACx->DHR12R1 = output & DAC_DHR12R1_DACC1DHR;
 	}
     }
+#ifdef DAC_CR_EN2
     else
     {
 	DACx->CR &= ~(DAC_CR_EN2 | DAC_CR_TEN2 | DAC_CR_WAVE2 | DAC_CR_DMAEN2 | DAC_CR_DMAUDRIE2 | DAC_CR_CEN2);
@@ -289,6 +294,7 @@ bool stm32l4_dac_channel(stm32l4_dac_t *dac, unsigned int channel, uint32_t outp
 	    DACx->DHR12R2 = output & DAC_DHR12R2_DACC2DHR;
 	}
     }
+#endif    
 	
     return true;
 }
@@ -306,10 +312,12 @@ bool stm32l4_dac_convert(stm32l4_dac_t *dac, unsigned int channel, uint32_t outp
     {
 	DACx->DHR12R1 = output & DAC_DHR12R1_DACC1DHR;
     }
+#ifdef DAC_CR_EN2    
     else
     {
 	DACx->DHR12R2 = output & DAC_DHR12R2_DACC2DHR;
     }
+#endif    
     
     return true;
 }

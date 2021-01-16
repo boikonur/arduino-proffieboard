@@ -42,9 +42,9 @@ extern "C" {
 
 enum {
     SPI_INSTANCE_SPI1  = 0,
-#if defined(STM32L433xx) || defined(STM32L476xx) || defined(STM32L496xx)
+#ifdef SPI2_BASE
     SPI_INSTANCE_SPI2,
-#endif /* defined(STM32L433xx) || defined(STM32L476xx) || defined(STM32L496xx) */
+#endif
     SPI_INSTANCE_SPI3,
     SPI_INSTANCE_COUNT
 };
@@ -196,9 +196,9 @@ extern uint16_t stm32l4_spi_crc16(stm32l4_spi_t *spi);
 extern void stm32l4_spi_poll(stm32l4_spi_t *spi);
 
 extern void SPI1_IRQHandler(void);
-#if defined(STM32L433xx) || defined(STM32L476xx) || defined(STM32L496xx)
+#ifdef SPI2_BASE
 extern void SPI2_IRQHandler(void);
-#endif /* defined(STM32L433xx) || defined(STM32L476xx) || defined(STM32L496xx) */
+#endif
 extern void SPI3_IRQHandler(void);
 
 #ifdef __cplusplus

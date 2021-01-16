@@ -43,11 +43,13 @@ extern "C" {
 enum {
     UART_INSTANCE_USART1 = 0,
     UART_INSTANCE_USART2,
-#if defined(STM32L433xx) || defined(STM32L476xx) || defined(STM32L496xx)
+#ifdef USART3_BASE    
     UART_INSTANCE_USART3,
 #endif
-#if defined(STM32L476xx) || defined(STM32L496xx)
+#ifdef UART4_BASE
     UART_INSTANCE_UART4,
+#endif    
+#ifdef UART5_BASE
     UART_INSTANCE_UART5,
 #endif
     UART_INSTANCE_LPUART1,

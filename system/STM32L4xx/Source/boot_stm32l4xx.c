@@ -40,6 +40,9 @@ const __attribute__((section(".boot_isr_vector"), used)) uint32_t vectors_stm32l
 #if defined(STM32L432xx) || defined(STM32L433xx)
     0x2000c000,                        /* Top of Stack */
 #endif /* defined(STM32L432xx) || defined(STM32L433xx) */
+#if defined(STM32L452xx)
+    0x20028000,                        /* Top of Stack */
+#endif /* defined(STM32L452xx) */
 #if defined(STM32L476xx)
     0x20018000,                        /* Top of Stack */
 #endif /* defined(STM32L496xx) */
@@ -76,7 +79,7 @@ __attribute__((section(".bootcode"), used, noinline)) __attribute__((naked)) voi
 
     RCC->APB2ENR |= RCC_APB2ENR_SYSCFGEN;
 
-#if defined(STM32L432xx) || defined(STM32L433xx) || defined(STM32L496xx)
+#if defined(STM32L432xx) || defined(STM32L433xx) || defined(STM32L452xx) || defined(STM32L496xx)
     RCC->APB1ENR1 |= RCC_APB1ENR1_RTCAPBEN;
 #endif
 
@@ -131,7 +134,7 @@ __attribute__((section(".bootcode"), used, noinline)) __attribute__((naked)) voi
 	GPIOB->LCKR = 0x0000ffff;
 	GPIOB->LCKR = 0x0001ffff;
 	GPIOB->LCKR;
-#if defined(STM32L433xx) || defined(STM32L476xx) || defined(STM32L496xx)
+#if defined(STM32L433xx) || defined(STM32L452xx) || defined(STM32L476xx) || defined(STM32L496xx)
 	GPIOC->LCKR = 0x00011fff;
 	GPIOC->LCKR = 0x00001fff;
 	GPIOC->LCKR = 0x00011fff;
@@ -143,7 +146,7 @@ __attribute__((section(".bootcode"), used, noinline)) __attribute__((naked)) voi
 	RCC->AHB2ENR &= ~(RCC_AHB2ENR_GPIOAEN | RCC_AHB2ENR_GPIOBEN | RCC_AHB2ENR_GPIOCEN); 
 #endif
 
-#if defined(STM32L432xx) || defined(STM32L433xx) || defined(STM32L496xx)
+#if defined(STM32L432xx) || defined(STM32L433xx) || defined(STM32L452xx) || defined(STM32L496xx)
 	RCC->APB1ENR1 &= ~RCC_APB1ENR1_RTCAPBEN;
 #endif
 

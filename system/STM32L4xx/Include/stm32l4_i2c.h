@@ -39,16 +39,16 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
+  
 enum {
     I2C_INSTANCE_I2C1  = 0,
-#if defined(STM32L433xx) || defined(STM32L476xx) || defined(STM32L496xx)
+#ifdef I2C2_BASE
     I2C_INSTANCE_I2C2,
-#endif /* defined(STM32L433xx) || defined(STM32L476xx) || defined(STM32L496xx) */
+#endif
     I2C_INSTANCE_I2C3,
-#if defined(STM32L496xx)
+#ifdef I2C4_BASE
     I2C_INSTANCE_I2C4,
-#endif /* defined(STM32L496xx) */
+#endif
     I2C_INSTANCE_COUNT
 };
 
@@ -155,13 +155,13 @@ extern void stm32l4_i2c_poll(stm32l4_i2c_t *i2c);
 
 extern void I2C1_EV_IRQHandler(void);
 extern void I2C1_ER_IRQHandler(void);
-#if defined(STM32L433xx) || defined(STM32L476xx) || defined(STM32L496xx)
+#ifdef I2C2_BASE
 extern void I2C2_EV_IRQHandler(void);
 extern void I2C2_ER_IRQHandler(void);
-#endif /* defined(STM32L433xx) || defined(STM32L476xx) || defined(STM32L496xx) */
+#endif
 extern void I2C3_EV_IRQHandler(void);
 extern void I2C3_ER_IRQHandler(void);
-#if defined(STM32L496xx)
+#ifdef I2C4_BASE
 extern void I2C4_EV_IRQHandler(void);
 extern void I2C4_ER_IRQHandler(void);
 #endif /* defined(STM32L496xx) */
