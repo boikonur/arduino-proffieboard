@@ -228,9 +228,9 @@
 			},
 			{
 			    "host": "i686-mingw32",
-			    "url": "https://fredrik.hubbe.net/lightsaber/gcc/gcc-arm-none-eabi-9-2020-q2-update-win32.tar.bz2",
-			    "archiveFileName": "gcc-arm-none-eabi-9-2020-q2-update-win32.tar.bz2",
-			    "checksum": "SHA-256:4a866bb1a36bc60bf837d8ea5a0f63df169b0077f67a62b63add0a8b47c694ea",
+			    "url": "https://fredrik.hubbe.net/lightsaber/gcc/gcc-arm-none-eabi-9-2020-q2-update-win32.zip",
+			    "archiveFileName": "gcc-arm-none-eabi-9-2020-q2-update-win32.zip",
+			    "checksum": "SHA-256:46cd2e7caeb73daa09acfb9a69df059cf4a27bb45434125afe533ffbace0dc0f",
 			    "size": "182770344"
 			}
 		    ]
