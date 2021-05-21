@@ -141,14 +141,13 @@ void init( void )
     stm32l4_exti_create(&stm32l4_exti, STM32L4_EXTI_IRQ_PRIORITY);
     stm32l4_exti_enable(&stm32l4_exti);
 
-#if (DOSFS_SDCARD == 1)
-
-#ifdef PIN_SPI_SD_POWER
+#if defined(PIN_SPI_SD_POWER) && (DOSFS_SDCARD != 0)
     // TODO: Power SD card on/off as needed.
     stm32l4_gpio_pin_configure(PIN_SPI_SD_POWER, (GPIO_PUPD_NONE | GPIO_OSPEED_HIGH | GPIO_OTYPE_PUSHPULL | GPIO_MODE_OUTPUT));
     stm32l4_gpio_pin_write(PIN_SPI_SD_POWER, 0);
 #endif
 
+#if (DOSFS_SDCARD == 1)
 #if defined(STM32L476xx) || defined(STM32L496xx)
     extern const stm32l4_spi_pins_t g_SPI3Pins;
 #else    
