@@ -150,7 +150,7 @@ extern const unsigned int g_Serial2Mode = 0;
 // Main serial port. (CTS overlaps with Button2)
 extern const stm32l4_uart_pins_t g_Serial3Pins = { GPIO_PIN_PC0_LPUART1_RX, GPIO_PIN_PC1_LPUART1_TX, GPIO_PIN_PB13_LPUART1_CTS, GPIO_PIN_NONE };
 extern const unsigned int g_Serial3Instance = UART_INSTANCE_LPUART1;
-extern const unsigned int g_Serial3Mode = UART_MODE_RX_DMA;
+extern const unsigned int g_Serial3Mode = 0;
 
 // SPI1, overlaps with data2/3 & Free1
 extern const stm32l4_spi_pins_t g_SPIPins = { GPIO_PIN_PB5_SPI1_MOSI, GPIO_PIN_PB4_SPI1_MISO, GPIO_PIN_PB3_SPI1_SCK, GPIO_PIN_NONE };
