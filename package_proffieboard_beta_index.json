@@ -1,7 +1,7 @@
 {
   "packages": [
     {
-      "name": "proffieboard",
+      "name": "proffieboard_beta",
       "maintainer": "Fredrik Hubinette",
       "websiteURL": "https://github.com/profezzorn/arduino-proffieboard",
       "email": "hubbe@hubbe.net",
@@ -10,7 +10,7 @@
       },
       "platforms": [
         {
-          "name": "Proffieboard",
+          "name": "Proffieboard Beta",
           "architecture": "stm32l4",
           "version": "0.1",
           "category": "Contributed",
@@ -33,7 +33,7 @@
           ]
         },
         {
-          "name": "Proffieboard",
+          "name": "Proffieboard Beta",
           "architecture": "stm32l4",
           "version": "0.1.1",
           "category": "Contributed",
@@ -56,7 +56,7 @@
           ]
         },
         {
-          "name": "Proffieboard",
+          "name": "Proffieboard Beta",
           "architecture": "stm32l4",
           "version": "0.1.2",
           "category": "Contributed",
@@ -79,7 +79,7 @@
           ]
         },
         {
-          "name": "Proffieboard",
+          "name": "Proffieboard Beta",
           "architecture": "stm32l4",
           "version": "0.1.3",
           "category": "Contributed",
@@ -102,7 +102,7 @@
           ]
         },
         {
-          "name": "Proffieboard",
+          "name": "Proffieboard Beta",
           "architecture": "stm32l4",
           "version": "0.1.4",
           "category": "Contributed",
@@ -125,7 +125,7 @@
           ]
         },
         {
-          "name": "Proffieboard",
+          "name": "Proffieboard Beta",
           "architecture": "stm32l4",
           "version": "0.1.5",
           "category": "Contributed",
@@ -148,7 +148,7 @@
           ]
         },
         {
-          "name": "Proffieboard",
+          "name": "Proffieboard Beta",
           "architecture": "stm32l4",
           "version": "0.1.6",
           "category": "Contributed",
@@ -171,7 +171,7 @@
           ]
         },
         {
-          "name": "Proffieboard",
+          "name": "Proffieboard Beta",
           "architecture": "stm32l4",
           "version": "0.1.7",
           "category": "Contributed",
@@ -194,7 +194,7 @@
           ]
         },
         {
-          "name": "Proffieboard",
+          "name": "Proffieboard Beta",
           "architecture": "stm32l4",
           "version": "1.0",
           "category": "Contributed",
@@ -218,7 +218,7 @@
           ]
         },
         {
-          "name": "Proffieboard",
+          "name": "Proffieboard Beta",
           "architecture": "stm32l4",
           "version": "1.1",
           "category": "Contributed",
@@ -242,7 +242,7 @@
           ]
         },
         {
-          "name": "Proffieboard",
+          "name": "Proffieboard Beta",
           "architecture": "stm32l4",
           "version": "2.2",
           "category": "Contributed",
@@ -266,17 +266,17 @@
           ]
         },
         {
-          "name": "Proffieboard",
+          "name": "Proffieboard Beta",
           "architecture": "stm32l4",
-          "version": "3.0",
+          "version": "3.1",
           "category": "Contributed",
           "help": {
             "online": "https://github.com/profezzorn/arduino-proffieboard/issues"
           },
-          "url": "https://github.com/profezzorn/arduino-proffieboard/archive/v3.0.tar.gz",
-          "archiveFileName": "arduino-proffieboard-v3.0.tar.gz",
-          "checksum": "SHA-256:dbc471d50ca6d7a3414bcaa014d824183e39b02946a70497bd118224bf5288f5",
-          "size": "22749525",
+          "url": "https://github.com/profezzorn/arduino-proffieboard/archive/v3.1.tar.gz",
+          "archiveFileName": "arduino-proffieboard-v3.1.tar.gz",
+          "checksum": "SHA-256:eeb6403939c87d01be17cda9e859bc5704c33a8fb72487b8dda70de24f85cf54",
+          "size": "24718693",
           "boards": [
             {"name": "Proffieboard"},
             {"name": "Proffieboard V2"},
