@@ -46,6 +46,9 @@ static stm32l4_uart_driver_t stm32l4_uart_driver;
 
 #define UART_RX_DATA_NONE 0x8000
 
+// TODO: Make this a create-time option.
+#define LPUART_HIGH_SPEED
+
 #define UART_RX_DMA_OPTION		  \
     (DMA_OPTION_EVENT_TRANSFER_DONE |     \
      DMA_OPTION_EVENT_TRANSFER_HALF |     \
@@ -384,16 +387,18 @@ bool stm32l4_uart_create(stm32l4_uart_t *uart, unsigned int instance, const stm3
 	    if (stm32l4_dma_create(&uart->rx_dma, DMA_CHANNEL_DMA1_CH6_USART2_RX, uart->priority)) { uart->mode |= UART_MODE_RX_DMA; }
 	    break;
 
-#if defined(STM32L433xx) || defined(STM32L476xx) || defined(STM32L496xx)
+#ifdef USART3_BASE
 	case UART_INSTANCE_USART3:
 	    if (stm32l4_dma_create(&uart->rx_dma, DMA_CHANNEL_DMA1_CH3_USART3_RX, uart->priority)) { uart->mode |= UART_MODE_RX_DMA; }
 	    break;
 #endif
 
-#if defined(STM32L476xx) || defined(STM32L496xx)
+#ifdef UART4_BASE
 	case UART_INSTANCE_UART4:
 	    if (stm32l4_dma_create(&uart->rx_dma, DMA_CHANNEL_DMA2_CH5_UART4_RX, uart->priority)) { uart->mode |= UART_MODE_RX_DMA; }
 	    break;
+#endif
+#ifdef UART5_BASE
 	case UART_INSTANCE_UART5:
 	    if (stm32l4_dma_create(&uart->rx_dma, DMA_CHANNEL_DMA2_CH2_UART5_RX, uart->priority)) { uart->mode |= UART_MODE_RX_DMA; }
 	    break;
@@ -419,15 +424,17 @@ bool stm32l4_uart_create(stm32l4_uart_t *uart, unsigned int instance, const stm3
 	    if (stm32l4_dma_create(&uart->tx_dma, DMA_CHANNEL_DMA1_CH7_USART2_TX, uart->priority)) { uart->mode |= UART_MODE_TX_DMA; }
 	    break;
 
-#if defined(STM32L433xx) || defined(STM32L476xx) || defined(STM32L496xx)
+#ifdef USART3_BASE
 	case UART_INSTANCE_USART3:
 	    if (stm32l4_dma_create(&uart->tx_dma, DMA_CHANNEL_DMA1_CH2_USART3_TX, uart->priority)) { uart->mode |= UART_MODE_TX_DMA; }
 	    break;
 #endif
-#if defined(STM32L476xx) || defined(STM32L496xx)
+#ifdef UART4_BASE
 	case UART_INSTANCE_UART4:
 	    if (stm32l4_dma_create(&uart->tx_dma, DMA_CHANNEL_DMA2_CH3_UART4_TX, uart->priority)) { uart->mode |= UART_MODE_TX_DMA; }
 	    break;
+#endif
+#ifdef UART5_BASE
 	case UART_INSTANCE_UART5:
 	    if (stm32l4_dma_create(&uart->tx_dma, DMA_CHANNEL_DMA2_CH1_UART5_TX, uart->priority)) { uart->mode |= UART_MODE_TX_DMA; }
 	    break;
@@ -525,21 +532,27 @@ bool stm32l4_uart_enable(stm32l4_uart_t *uart, uint8_t *rx_data, uint16_t rx_siz
     case UART_INSTANCE_USART2:
 	armv7m_atomic_modify(&RCC->CCIPR, RCC_CCIPR_USART2SEL, RCC_CCIPR_USART2SEL_1); /* HSI */
 	break;
-#if defined(STM32L433xx) || defined(STM32L476xx) || defined(STM32L496xx)
+#ifdef USART3_BASE	
     case UART_INSTANCE_USART3:
 	armv7m_atomic_modify(&RCC->CCIPR, RCC_CCIPR_USART3SEL, RCC_CCIPR_USART3SEL_1); /* HSI */
 	break;
 #endif
-#if defined(STM32L476xx) || defined(STM32L496xx)
+#ifdef UART4_BASE
     case UART_INSTANCE_UART4:
 	armv7m_atomic_modify(&RCC->CCIPR, RCC_CCIPR_UART4SEL, RCC_CCIPR_UART4SEL_1);   /* HSI */
 	break;
+#endif	
+#ifdef UART5_BASE
     case UART_INSTANCE_UART5:
 	armv7m_atomic_modify(&RCC->CCIPR, RCC_CCIPR_UART5SEL, RCC_CCIPR_UART5SEL_1);   /* HSI */
 	break;
 #endif
     case UART_INSTANCE_LPUART1:
-	armv7m_atomic_modify(&RCC->CCIPR, RCC_CCIPR_LPUART1SEL, (RCC_CCIPR_LPUART1SEL_0 | RCC_CCIPR_LPUART1SEL_1)); /* LSE */
+#ifdef LPUART_HIGH_SPEED
+        armv7m_atomic_modify(&RCC->CCIPR, RCC_CCIPR_LPUART1SEL, RCC_CCIPR_LPUART1SEL_1); /* HSI */
+#else      
+        armv7m_atomic_modify(&RCC->CCIPR, RCC_CCIPR_LPUART1SEL, (RCC_CCIPR_LPUART1SEL_0 | RCC_CCIPR_LPUART1SEL_1)); /* LSE */
+#endif	
 	break;
     }
 
@@ -592,10 +605,14 @@ bool stm32l4_uart_disable(stm32l4_uart_t *uart)
 
     stm32l4_system_periph_disable(SYSTEM_PERIPH_USART1 + uart->instance);
 
+#ifdef LPUART_HIGH_SPEED
+    stm32l4_system_hsi16_disable();
+#else    
     if (uart->instance != UART_INSTANCE_LPUART1)
     {
 	stm32l4_system_hsi16_disable();
     }
+#endif    
 
     if (uart->pins.rx != GPIO_PIN_NONE)
     {
@@ -638,12 +655,13 @@ bool stm32l4_uart_configure(stm32l4_uart_t *uart, uint32_t bitrate, uint32_t opt
 	return false;
     }
 
+#ifndef LPUART_HIGH_SPEED    
     if ((bitrate > 9600) && (uart->instance == UART_INSTANCE_LPUART1))
     {
 	return false;
     }
-
-    if ((bitrate > 921600) && (uart->instance != UART_INSTANCE_LPUART1))
+#endif    
+    if (bitrate > 921600)
     {
 	return false;
     }
@@ -813,7 +831,10 @@ bool stm32l4_uart_configure(stm32l4_uart_t *uart, uint32_t bitrate, uint32_t opt
     {
 	usart_cr2 |= USART_CR2_DATAINV;
     }
-    
+
+#ifdef LPUART_HIGH_SPEED
+    USART->BRR = ((16000000 + (bitrate >> 1)) / bitrate);   /* HSI */
+#else
     if (uart->instance == UART_INSTANCE_LPUART1)
     {
 	USART->BRR = (256 * 32768 + (bitrate >> 1)) / bitrate;  /* LSE */
@@ -822,6 +843,7 @@ bool stm32l4_uart_configure(stm32l4_uart_t *uart, uint32_t bitrate, uint32_t opt
     {
 	USART->BRR = ((16000000 + (bitrate >> 1)) / bitrate);   /* HSI */
     }
+#endif
 
     if (uart->mode & UART_MODE_RX_DMA)
     {
