@@ -63,31 +63,38 @@ static stm32l4_uart_driver_t stm32l4_uart_driver;
      DMA_OPTION_MEMORY_DATA_INCREMENT |	  \
      DMA_OPTION_PRIORITY_MEDIUM)
 
-static USART_TypeDef * const stm32l4_uart_xlate_USART[UART_INSTANCE_COUNT] = {
+static USART_TypeDef * const stm32l4_uart_xlate_USART[] = {
     USART1,
     USART2,
-#if defined(STM32L433xx) || defined(STM32L476xx) || defined(STM32L496xx)
+#ifdef USART3_BASE
     USART3,
 #endif
-#if defined(STM32L476xx) || defined(STM32L496xx)
+#ifdef UART4_BASE
     UART4,
+#endif    
+#ifdef UART5_BASE
     UART5,
 #endif
     LPUART1,
 };
 
-static const IRQn_Type stm32l4_uart_xlate_IRQn[UART_INSTANCE_COUNT] = {
+static const IRQn_Type stm32l4_uart_xlate_IRQn[] = {
     USART1_IRQn,
     USART2_IRQn,
-#if defined(STM32L433xx) || defined(STM32L476xx) || defined(STM32L496xx)
+#ifdef USART3_BASE
     USART3_IRQn,
 #endif
-#if defined(STM32L476xx) || defined(STM32L496xx)
+#ifdef UART4_BASE
     UART4_IRQn,
+#endif    
+#ifdef UART5_BASE
     UART5_IRQn,
 #endif
     LPUART1_IRQn,
 };
+
+stm32l4_ct_assert(STM32L4_NELEM(stm32l4_uart_xlate_USART) == UART_INSTANCE_COUNT);
+stm32l4_ct_assert(STM32L4_NELEM(stm32l4_uart_xlate_IRQn) == UART_INSTANCE_COUNT);
 
 static void stm32l4_uart_dma_callback(stm32l4_uart_t *uart, uint32_t events)
 {
@@ -1128,27 +1135,25 @@ void USART2_IRQHandler(void)
     stm32l4_uart_interrupt(stm32l4_uart_driver.instances[UART_INSTANCE_USART2]);
 }
 
-#if defined(STM32L433xx) || defined(STM32L476xx) || defined(STM32L496xx)
-
+#ifdef USART3_BASE
 void USART3_IRQHandler(void)
 {
     stm32l4_uart_interrupt(stm32l4_uart_driver.instances[UART_INSTANCE_USART3]);
 }
-
 #endif
 
-#if defined(STM32L476xx) || defined(STM32L496xx)
-
+#ifdef UART4_BASE
 void UART4_IRQHandler(void)
 {
     stm32l4_uart_interrupt(stm32l4_uart_driver.instances[UART_INSTANCE_UART4]);
 }
+#endif
 
+#ifdef UART5_BASE
 void UART5_IRQHandler(void)
 {
     stm32l4_uart_interrupt(stm32l4_uart_driver.instances[UART_INSTANCE_UART5]);
 }
-
 #endif
 
 void LPUART1_IRQHandler(void)
