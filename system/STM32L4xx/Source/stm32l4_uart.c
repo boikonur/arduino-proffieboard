@@ -520,10 +520,14 @@ bool stm32l4_uart_enable(stm32l4_uart_t *uart, uint8_t *rx_data, uint16_t rx_siz
     uart->rx_event = 0;
     uart->rx_count = 0;
 
+#ifdef LPUART_HIGH_SPEED
+    stm32l4_system_hsi16_enable();
+#else
     if (uart->instance != UART_INSTANCE_LPUART1)
     {
 	stm32l4_system_hsi16_enable();
     }
+#endif    
 
     switch (uart->instance) {
     case UART_INSTANCE_USART1:
@@ -832,18 +836,18 @@ bool stm32l4_uart_configure(stm32l4_uart_t *uart, uint32_t bitrate, uint32_t opt
 	usart_cr2 |= USART_CR2_DATAINV;
     }
 
-#ifdef LPUART_HIGH_SPEED
-    USART->BRR = ((16000000 + (bitrate >> 1)) / bitrate);   /* HSI */
-#else
     if (uart->instance == UART_INSTANCE_LPUART1)
     {
-	USART->BRR = (256 * 32768 + (bitrate >> 1)) / bitrate;  /* LSE */
+#ifdef LPUART_HIGH_SPEED
+      USART->BRR = (256UL * 16000000UL + (unsigned long)(bitrate >> 1)) / (unsigned long)bitrate;  /* HSI */
+#else
+      USART->BRR = (256 * 32768 + (bitrate >> 1)) / bitrate;  /* LSE */
+#endif
     }
     else
     {
 	USART->BRR = ((16000000 + (bitrate >> 1)) / bitrate);   /* HSI */
     }
-#endif
 
     if (uart->mode & UART_MODE_RX_DMA)
     {
