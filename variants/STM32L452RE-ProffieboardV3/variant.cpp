@@ -147,8 +147,8 @@ extern const stm32l4_uart_pins_t g_Serial2Pins = { GPIO_PIN_PB11_USART3_RX, GPIO
 extern const unsigned int g_Serial2Instance = UART_INSTANCE_USART3;
 extern const unsigned int g_Serial2Mode = 0;
 
-// Main serial port. (CTS overlaps with Button2)
-extern const stm32l4_uart_pins_t g_Serial3Pins = { GPIO_PIN_PC0_LPUART1_RX, GPIO_PIN_PC1_LPUART1_TX, GPIO_PIN_PB13_LPUART1_CTS, GPIO_PIN_NONE };
+// Main serial port. (Button2 could potentially be used for CTS)
+extern const stm32l4_uart_pins_t g_Serial3Pins = { GPIO_PIN_PC0_LPUART1_RX, GPIO_PIN_PC1_LPUART1_TX, GPIO_PIN_NONE, GPIO_PIN_NONE };
 extern const unsigned int g_Serial3Instance = UART_INSTANCE_LPUART1;
 extern const unsigned int g_Serial3Mode = 0;
 
