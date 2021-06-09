@@ -339,6 +339,31 @@
               "version": "9-2020-q2-update"
             }
           ]
+        },
+        {
+          "name": "Proffieboard Beta",
+          "architecture": "stm32l4",
+          "version": "3.4",
+          "category": "Contributed",
+          "help": {
+            "online": "https://github.com/profezzorn/arduino-proffieboard/issues"
+          },
+          "url": "https://github.com/profezzorn/arduino-proffieboard/archive/v3.4.tar.gz",
+          "archiveFileName": "arduino-proffieboard-v3.4.tar.gz",
+          "checksum": "SHA-256:ef6ca2cb861856a46ab117970cc84a8b896a2075f285abf505ff582ef75ded34",
+          "size": "24720310",
+          "boards": [
+            {"name": "Proffieboard"},
+            {"name": "Proffieboard V2"},
+            {"name": "Proffieboard V3"}
+          ],
+          "toolsDependencies": [
+            {
+              "packager": "proffieboard_beta",
+              "name": "arm-none-eabi-gcc",
+              "version": "9-2020-q2-update"
+            }
+          ]
         }
 	  
       ],
