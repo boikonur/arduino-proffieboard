@@ -170,7 +170,7 @@ extern const unsigned int g_SPI2Mode = SPI_MODE_RX_DMA | SPI_MODE_TX_DMA | SPI_M
 // Main I2C
 extern const stm32l4_i2c_pins_t g_WirePins = { GPIO_PIN_PB8_I2C1_SCL, GPIO_PIN_PB7_I2C1_SDA };
 extern const unsigned int g_WireInstance = I2C_INSTANCE_I2C1;
-extern const unsigned int g_WireMode = I2C_MODE_RX_DMA;
+extern const unsigned int g_WireMode = I2C_MODE_RX_DMA | I2C_MODE_TX_DMA | I2C_MODE_RX_DMA_SECONDARY | I2C_MODE_TX_DMA_SECONDARY;
 
 // Overlaps with Button1 & Button2
 extern const stm32l4_i2c_pins_t g_Wire1Pins = { GPIO_PIN_PB13_I2C2_SCL, GPIO_PIN_PB14_I2C2_SDA };
