@@ -67,10 +67,12 @@ extern void itoa( int n, char s[] )
 }
 */
 
+#if __GNUC__ < 7
 extern char* itoa( int value, char *string, int radix )
 {
   return ltoa( value, string, radix ) ;
 }
+#endif
 
 extern char* ltoa( long value, char *string, int radix )
 {
@@ -122,10 +124,12 @@ extern char* ltoa( long value, char *string, int radix )
   return string;
 }
 
+#if __GNUC__ < 7
 extern char* utoa( unsigned value, char *string, int radix )
 {
   return ultoa( value, string, radix ) ;
 }
+#endif
 
 extern char* ultoa( unsigned long value, char *string, int radix )
 {

@@ -75,7 +75,8 @@ void __attribute__((naked)) HardFault_Handler (void)
     " mrsne r0,psp    \n"
     " mov r1,lr       \n"
     " ldr r2,=HardFault_Handler_C\n"
-    " bx r2"
+    " bx r2\n"
+    ".ltorg\n"
     : /* Outputs */
     : /* Inputs */
     : /* Clobbers */
