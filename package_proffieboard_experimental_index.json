@@ -261,8 +261,8 @@
           },
           "url": "https://github.com/profezzorn/arduino-proffieboard/archive/v3.5.tar.gz",
           "archiveFileName": "arduino-proffieboard-v3.5.tar.gz",
-          "checksum": "SHA-256:bb5163af3871cd568bbcfa46c02861f0b22fc5c0c013adfe966b0bca12b5fb60",
-          "size": "24719435",
+          "checksum": "SHA-256:dc49eddee9f9cf855642645a416ffc7f7c671cb20c86290f4e44ce591597c877",
+          "size": "24719836",
           "boards": [
             {"name": "Proffieboard"},
             {"name": "Proffieboard V2"},
