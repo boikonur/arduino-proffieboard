@@ -145,7 +145,7 @@
           ],
           "toolsDependencies": [
             {
-              "packager": "proffieboard_beta",
+              "packager": "proffieboard_experimental",
               "name": "arm-none-eabi-gcc",
               "version": "9-2020-q2-update"
             }
@@ -170,7 +170,7 @@
           ],
           "toolsDependencies": [
             {
-              "packager": "proffieboard_beta",
+              "packager": "proffieboard_experimental",
               "name": "arm-none-eabi-gcc",
               "version": "9-2020-q2-update"
             }
@@ -195,7 +195,7 @@
           ],
           "toolsDependencies": [
             {
-              "packager": "proffieboard_beta",
+              "packager": "proffieboard_experimental",
               "name": "arm-none-eabi-gcc",
               "version": "9-2020-q2-update"
             }
@@ -220,7 +220,7 @@
           ],
           "toolsDependencies": [
             {
-              "packager": "proffieboard_beta",
+              "packager": "proffieboard_experimental",
               "name": "arm-none-eabi-gcc",
               "version": "9-2020-q2-update"
             }
@@ -245,7 +245,7 @@
           ],
           "toolsDependencies": [
             {
-              "packager": "proffieboard_beta",
+              "packager": "proffieboard_experimental",
               "name": "arm-none-eabi-gcc",
               "version": "9-2020-q2-update"
             }
@@ -270,7 +270,7 @@
           ],
           "toolsDependencies": [
             {
-              "packager": "proffieboard_beta",
+              "packager": "proffieboard_experimental",
               "name": "arm-none-eabi-gcc",
               "version": "9-2020-q2-update"
             }
