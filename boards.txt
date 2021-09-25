@@ -11,7 +11,7 @@ Proffieboard-L433CC.pid.0=0x6668
 
 Proffieboard-L433CC.upload.tool=stm32l4_dfu
 Proffieboard-L433CC.upload.protocol=dfu
-Proffieboard-L433CC.upload.maximum_size=245760
+Proffieboard-L433CC.upload.maximum_size=262144
 Proffieboard-L433CC.upload.use_1200bps_touch=true
 Proffieboard-L433CC.upload.wait_for_upload_port=false
 Proffieboard-L433CC.upload.native_usb=false
@@ -104,7 +104,7 @@ ProffieboardV2-L433CC.pid.0=0x6668
 
 ProffieboardV2-L433CC.upload.tool=stm32l4_dfu
 ProffieboardV2-L433CC.upload.protocol=dfu
-ProffieboardV2-L433CC.upload.maximum_size=245760
+ProffieboardV2-L433CC.upload.maximum_size=262144
 ProffieboardV2-L433CC.upload.use_1200bps_touch=true
 ProffieboardV2-L433CC.upload.wait_for_upload_port=false
 ProffieboardV2-L433CC.upload.native_usb=false
