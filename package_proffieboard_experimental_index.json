@@ -300,6 +300,31 @@
               "version": "9-2020-q2-update"
             }
           ]
+        },
+        {
+          "name": "Proffieboard Experimental",
+          "architecture": "stm32l4",
+          "version": "3.6.1",
+          "category": "Contributed",
+          "help": {
+            "online": "https://github.com/profezzorn/arduino-proffieboard/issues"
+          },
+          "url": "https://github.com/profezzorn/arduino-proffieboard/archive/v3.6.tar.gz",
+          "archiveFileName": "arduino-proffieboard-v3.6.tar.gz",
+          "checksum": "SHA-256:28d0f6adce8baceb2b07760768cb055f31b64df4839795ed5013085ccb0d9de3",
+          "size": "24720841",
+          "boards": [
+            {"name": "Proffieboard"},
+            {"name": "Proffieboard V2"},
+            {"name": "Proffieboard V3"}
+          ],
+          "toolsDependencies": [
+            {
+              "packager": "proffieboard_experimental",
+              "name": "arm-none-eabi-gcc",
+              "version": "12.3.rel1"
+            }
+          ]
         }
       ],
 	    "tools": [
@@ -382,6 +407,47 @@
 			    "archiveFileName": "gcc-arm-none-eabi-9-2020-q2-update-win32.zip",
 			    "checksum": "SHA-256:46cd2e7caeb73daa09acfb9a69df059cf4a27bb45434125afe533ffbace0dc0f",
 			    "size": "182770344"
+			}
+		    ]
+		},
+		{
+		    "name": "arm-none-eabi-gcc",
+		    "version": "12.3.rel1",
+		    "systems": [
+			{
+			    "host": "aarch64-linux-gnu",
+			    "url": "https://developer.arm.com/-/media/Files/downloads/gnu/12.3.rel1/binrel/arm-gnu-toolchain-12.3.rel1-aarch64-arm-none-eabi.tar.xz",
+			    "archiveFileName": "arm-gnu-toolchain-12.3.rel1-aarch64-arm-none-eabi.tar.xz",
+			    "checksum": "SHA-256:14c0487d5753f6071d24e568881f7c7e67f80dd83165dec5164b3731394af431",
+			    "size": "151941920"
+			},
+			{
+			    "host": "x86_64-apple-darwin",
+			    "url": "https://developer.arm.com/-/media/Files/downloads/gnu/12.3.rel1/binrel/arm-gnu-toolchain-12.3.rel1-darwin-x86_64-arm-none-eabi.tar.xz",
+			    "archiveFileName": "arm-gnu-toolchain-12.3.rel1-darwin-x86_64-arm-none-eabi.tar.xz",
+			    "checksum": "SHA-256:e6ed8bf930fad9ce33e120ab90b36957b1f779fccaa6de6c9ca9a58982c04291",
+			    "size": "119505008"
+			},
+			{
+			    "host": "aarch64-apple-darwin",
+			    "url": "https://developer.arm.com/-/media/Files/downloads/gnu/12.3.rel1/binrel/arm-gnu-toolchain-12.3.rel1-darwin-arm64-arm-none-eabi.tar.xz",
+			    "archiveFileName": "arm-gnu-toolchain-12.3.rel1-darwin-arm64-arm-none-eabi.tar.xz",
+			    "checksum": "SHA-256:3b2eee0bdf71c1bbeb3c3b7424fbf7bd9d5c3f0f5a3a4a78159c9e3ad219e7bd",
+			    "size": "110120636"
+			},
+			{
+			    "host": "x86_64-pc-linux-gnu",
+			    "url": "https://developer.arm.com/-/media/Files/downloads/gnu/12.3.rel1/binrel/arm-gnu-toolchain-12.3.rel1-x86_64-arm-none-eabi.tar.xz",
+			    "archiveFileName": "arm-gnu-toolchain-12.3.rel1-x86_64-arm-none-eabi.tar.xz",
+			    "checksum": "SHA-256:12a2815644318ebcceaf84beabb665d0924b6e79e21048452c5331a56332b309",
+			    "size": "159854488"
+			},
+			{
+			    "host": "i686-mingw32",
+			    "url": "https://developer.arm.com/-/media/Files/downloads/gnu/12.3.rel1/binrel/arm-gnu-toolchain-12.3.rel1-mingw-w64-i686-arm-none-eabi.zip",
+			    "archiveFileName": "arm-gnu-toolchain-12.3.rel1-mingw-w64-i686-arm-none-eabi.zip",
+			    "checksum": "SHA-256:d52888bf59c5262ebf3e6b19b9f9e6270ecb60fd218cf81a4e793946e805a654",
+			    "size": "336539068"
 			}
 		    ]
 		}
