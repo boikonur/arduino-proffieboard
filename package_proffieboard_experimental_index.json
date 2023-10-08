@@ -304,15 +304,15 @@
         {
           "name": "Proffieboard Experimental",
           "architecture": "stm32l4",
-          "version": "3.6.1",
+          "version": "3.7",
           "category": "Contributed",
           "help": {
             "online": "https://github.com/profezzorn/arduino-proffieboard/issues"
           },
-          "url": "https://github.com/profezzorn/arduino-proffieboard/archive/v3.6.tar.gz",
-          "archiveFileName": "arduino-proffieboard-v3.6.tar.gz",
-          "checksum": "SHA-256:28d0f6adce8baceb2b07760768cb055f31b64df4839795ed5013085ccb0d9de3",
-          "size": "24720841",
+          "url": "https://github.com/profezzorn/arduino-proffieboard/archive/v3.7.tar.gz",
+          "archiveFileName": "arduino-proffieboard-v3.7.tar.gz",
+          "checksum": "SHA-256:133bca65daf8a95a1086ac07030eed9f8e0c54c9f931c23065dfbe3790cc428c",
+          "size": "24719718",
           "boards": [
             {"name": "Proffieboard"},
             {"name": "Proffieboard V2"},
@@ -322,7 +322,7 @@
             {
               "packager": "proffieboard_experimental",
               "name": "arm-none-eabi-gcc",
-              "version": "12.3.rel1"
+              "version": "12-3-rel1"
             }
           ]
         }
@@ -412,7 +412,7 @@
 		},
 		{
 		    "name": "arm-none-eabi-gcc",
-		    "version": "12.3.rel1",
+		    "version": "12-3-rel1",
 		    "systems": [
 			{
 			    "host": "aarch64-linux-gnu",
