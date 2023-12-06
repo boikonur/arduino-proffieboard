@@ -165,7 +165,7 @@ extern const unsigned int g_SPI1Mode = 0;
 // SPI3, same pins as SPI1
 extern const stm32l4_spi_pins_t g_SPI2Pins = { GPIO_PIN_PB5_SPI3_MOSI, GPIO_PIN_PB4_SPI3_MISO, GPIO_PIN_PB3_SPI3_SCK, GPIO_PIN_NONE };
 extern const unsigned int g_SPI2Instance = SPI_INSTANCE_SPI3;
-extern const unsigned int g_SPI2Mode = SPI_MODE_RX_DMA | SPI_MODE_TX_DMA | SPI_MODE_RX_DMA_SECONDARY | SPI_MODE_TX_DMA_SECONDARY;
+extern const unsigned int g_SPI2Mode = 0;
 
 // Main I2C
 extern const stm32l4_i2c_pins_t g_WirePins = { GPIO_PIN_PB8_I2C1_SCL, GPIO_PIN_PB7_I2C1_SDA };
