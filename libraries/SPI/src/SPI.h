@@ -53,6 +53,8 @@
 #define SPI_CLOCK_DIV64  64
 #define SPI_CLOCK_DIV128 128
 
+#define SPI_HAS_BEGIN_OUTPUT_ONLY
+
 class SPISettings {
 public:
     SPISettings() : _clock(4000000), _bitOrder(MSBFIRST), _dataMode(SPI_MODE0) { }
@@ -85,6 +87,7 @@ public:
     void detachInterrupt();
 
     void begin();
+    void begin_output_only();
     void end();
 
     void setBitOrder(BitOrder bitOrder);

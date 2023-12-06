@@ -937,6 +937,57 @@ bool stm32l4_spi_enable(stm32l4_spi_t *spi, stm32l4_spi_callback_t callback, voi
     return true;
 }
 
+bool stm32l4_spi_enable_output_only(stm32l4_spi_t *spi, stm32l4_spi_callback_t callback, void *context, uint32_t events)
+{
+    SPI_TypeDef *SPI = spi->SPI;
+
+    if (spi->state != SPI_STATE_INIT)
+    {
+	return false;
+    }
+
+    spi->callback = NULL;
+    spi->context = NULL;
+    spi->events = 0;
+
+    NVIC_SetPriority(spi->interrupt, spi->priority);
+
+    spi->state = SPI_STATE_BUSY;
+
+    stm32l4_spi_start(spi);
+
+    SPI->CR1 = 0;
+    SPI->CR2 = 0;
+    
+    spi->cr1 = SPI_CR1_MSTR;
+    spi->cr2 = 0;
+
+    if (spi->pins.ss == GPIO_PIN_NONE)
+    {
+	spi->cr1 |= (SPI_CR1_SSM | SPI_CR1_SSI);
+    }
+    else
+    {
+	spi->cr2 |= SPI_CR2_NSSP;
+    }
+    
+    SPI->CRCPR = 0x1021;
+    SPI->CR2 = spi->cr2;
+    SPI->CR1 = spi->cr1;
+    
+    stm32l4_gpio_pin_configure(spi->pins.mosi, (GPIO_PUPD_NONE | GPIO_OSPEED_HIGH | GPIO_OTYPE_PUSHPULL | GPIO_MODE_ALTERNATE));
+    stm32l4_gpio_pin_write(spi->pins.mosi, 1);
+
+    stm32l4_gpio_pin_configure(spi->pins.sck, (GPIO_PUPD_NONE | GPIO_OSPEED_HIGH | GPIO_OTYPE_PUSHPULL | GPIO_MODE_ALTERNATE));
+    stm32l4_spi_stop(spi);
+
+    stm32l4_spi_notify(spi, callback, context, events);
+
+    spi->state = SPI_STATE_READY;
+
+    return true;
+}
+
 bool stm32l4_spi_disable(stm32l4_spi_t *spi)
 {
     if (spi->state != SPI_STATE_READY)

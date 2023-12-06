@@ -68,6 +68,11 @@ void SPIClass::begin()
     stm32l4_spi_enable(_spi, SPIClass::_eventCallback, (void*)this, (SPI_EVENT_RECEIVE_DONE | SPI_EVENT_TRANSMIT_DONE | SPI_EVENT_TRANSFER_DONE));
 }
 
+void SPIClass::begin_output_only()
+{
+    stm32l4_spi_enable_output_only(_spi, SPIClass::_eventCallback, (void*)this, (SPI_EVENT_RECEIVE_DONE | SPI_EVENT_TRANSMIT_DONE | SPI_EVENT_TRANSFER_DONE));
+}
+
 void SPIClass::end()
 {
     if (_selected) {

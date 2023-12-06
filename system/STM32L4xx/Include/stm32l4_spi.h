@@ -180,6 +180,7 @@ extern bool stm32l4_spi_create(stm32l4_spi_t *spi, unsigned int instance, const 
 extern bool stm32l4_spi_destroy(stm32l4_spi_t *spi);
 extern uint32_t stm32l4_spi_clock(stm32l4_spi_t *spi);
 extern bool stm32l4_spi_enable(stm32l4_spi_t *spi, stm32l4_spi_callback_t callback, void *context, uint32_t events);
+extern bool stm32l4_spi_enable_output_only(stm32l4_spi_t *spi, stm32l4_spi_callback_t callback, void *context, uint32_t events);
 extern bool stm32l4_spi_disable(stm32l4_spi_t *spi);
 extern bool stm32l4_spi_notify(stm32l4_spi_t *spi, stm32l4_spi_callback_t callback, void *context, uint32_t events);
 extern bool stm32l4_spi_select(stm32l4_spi_t *spi, uint32_t option);
