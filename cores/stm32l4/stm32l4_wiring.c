@@ -128,9 +128,13 @@ void UsageFault_Handler(void)
     }
 }
 
+#ifndef _SYSTEM_PCLK_DIVIDER_
+#define _SYSTEM_PCLK_DIVIDER_ 2
+#endif
+
 void init( void )
 {
-    stm32l4_system_initialize(_SYSTEM_CORE_CLOCK_, _SYSTEM_CORE_CLOCK_/2, _SYSTEM_CORE_CLOCK_/2, STM32L4_CONFIG_LSECLK, STM32L4_CONFIG_HSECLK, STM32L4_CONFIG_SYSOPT);
+    stm32l4_system_initialize(_SYSTEM_CORE_CLOCK_, _SYSTEM_CORE_CLOCK_/_SYSTEM_PCLK_DIVIDER_, _SYSTEM_CORE_CLOCK_/_SYSTEM_PCLK_DIVIDER_, STM32L4_CONFIG_LSECLK, STM32L4_CONFIG_HSECLK, STM32L4_CONFIG_SYSOPT);
 
     armv7m_svcall_initialize();
     armv7m_pendsv_initialize();
