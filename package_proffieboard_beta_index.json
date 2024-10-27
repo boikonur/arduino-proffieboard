@@ -409,7 +409,7 @@
           ],
           "toolsDependencies": [
             {
-              "packager": "proffieboard_experimental",
+              "packager": "proffieboard_beta",
               "name": "arm-none-eabi-gcc",
               "version": "12-3-rel1"
             }
