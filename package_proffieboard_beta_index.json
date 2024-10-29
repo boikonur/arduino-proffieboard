@@ -414,31 +414,6 @@
               "version": "12-3-rel1"
             }
           ]
-        },
-        {
-          "name": "Proffieboard Beta",
-          "architecture": "stm32l4",
-          "version": "4.1.1",
-          "category": "Contributed",
-          "help": {
-            "online": "https://github.com/profezzorn/arduino-proffieboard/issues"
-          },
-          "url": "https://github.com/profezzorn/arduino-proffieboard/archive/v4.1.tar.gz",
-          "archiveFileName": "arduino-proffieboard-v4.1.tar.gz",
-          "checksum": "SHA-256:e4263f7352004b867e49ef5f9878352df05ed4b099652716a4a35875dd5ec876",
-          "size": "22588658",
-          "boards": [
-            {"name": "Proffieboard"},
-            {"name": "Proffieboard V2"},
-            {"name": "Proffieboard V3"}
-          ],
-          "toolsDependencies": [
-            {
-              "packager": "proffieboard_beta",
-              "name": "arm-none-eabi-gcc",
-              "version": "13-3-rel1"
-            }
-          ]
         }
       ],
       "tools": [
