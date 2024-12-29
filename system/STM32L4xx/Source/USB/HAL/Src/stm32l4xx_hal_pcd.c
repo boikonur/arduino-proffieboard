@@ -615,6 +615,7 @@ void HAL_PCD_IRQHandler(PCD_HandleTypeDef *hpcd)
         latency to the Data FIFO */
 
       /* Get hclk frequency value */
+      extern uint32_t stm32l4_system_hclk(void);
       hclk = stm32l4_system_hclk();
 
       if(hclk <= 15000000)

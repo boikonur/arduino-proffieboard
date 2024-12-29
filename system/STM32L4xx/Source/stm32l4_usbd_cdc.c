@@ -639,8 +639,10 @@ void stm32l4_usbd_cdc_poll(stm32l4_usbd_cdc_t *usbd_cdc)
     if (usbd_cdc->state >= USBD_CDC_STATE_READY)
     {
 #if defined(STM32L476xx) || defined(STM32L496xx)
+        extern void OTG_FS_IRQHandler();
 	OTG_FS_IRQHandler();
 #else
+        extern void USB_IRQHandler();
 	USB_IRQHandler();
 #endif
     }
