@@ -26,8 +26,8 @@ version=1.6.4
 compiler.warning_flags=-w
 compiler.warning_flags.none=-w
 compiler.warning_flags.default=
-compiler.warning_flags.more=-Wall -Wno-strict-aliasing
-compiler.warning_flags.all=-Wall -Wextra
+compiler.warning_flags.more=-Wall -Wno-strict-aliasing 
+compiler.warning_flags.all=-Wall -Wextra -Wno-unused-parameter
 
 compiler.path={runtime.tools.arm-none-eabi-gcc.path}/bin/
 compiler.c.cmd=arm-none-eabi-gcc
