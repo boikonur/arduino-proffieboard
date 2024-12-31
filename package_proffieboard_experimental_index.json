@@ -644,10 +644,10 @@
 			},
 			{
 			    "host": "i686-mingw32",
-			    "url": "https://developer.arm.com/-/media/Files/downloads/gnu/14.2.rel1/binrel/arm-gnu-toolchain-14.2.rel1-mingw-w64-i686-arm-none-eabi.zip",
-			    "archiveFileName": "arm-gnu-toolchain-14.2.rel1-mingw-w64-i686-arm-none-eabi.zip",
-			    "checksum": "SHA-256:6facb152ce431ba9a4517e939ea46f057380f8f1e56b62e8712b3f3b87d994e1",
-			    "size": "305393359"
+			    "url": "https://fredrik.hubbe.net/lightsaber/gcc/arm-gnu-toolchain-14.2.rel1-mingw-w64-i686-arm-none-eabi-fixed.zip",
+			    "archiveFileName": "arm-gnu-toolchain-14.2.rel1-mingw-w64-i686-arm-none-eabi-fixed.zip",
+			    "checksum": "SHA-256:ab08b1d1f553d0f8b6a3993b30a6d12f324c3a07da8078b4618ea3c869915c7c",
+			    "size": "306401896"
 			},
 			{
 			    "host": "x86_64-pc-linux-gnu",
