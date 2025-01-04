@@ -33,32 +33,57 @@
 
 #include "armv7m.h"
 
-void stm32l4_iwdg_enable(uint32_t timeout)
+// Enable and configure the Independent Watchdog (IWDG) with a specified timeout
+int stm32l4_iwdg_enable(uint32_t timeout)
 {
-    uint32_t iwdg_pr, iwdg_rl;
-
+    uint32_t iwdg_pr = 0; 
+    uint32_t iwdg_rl;     
+    
     if (timeout > 32000)
     {
-	timeout = 32000;
+        timeout = 32000;
     }
 
-    iwdg_pr = 0;
-    iwdg_rl = timeout * (32000 / (4 * 1000));
-    
-    while (iwdg_rl > 4096)
+    // Set minimum timeout to 1 ms to avoid invalid configurations
+    if (timeout < 1)
     {
-	iwdg_pr++;
-	iwdg_rl >>= 1;
+        timeout = 1;
     }
-    
-    IWDG->KR = 0xcccc;
-    IWDG->KR = 0x5555;
 
-    while (IWDG->SR & (IWDG_SR_WVU | IWDG_SR_RVU | IWDG_SR_PVU))
+    // Improved timeout calculation to avoid precision loss
+    iwdg_rl = (timeout * 32000) / (4 * 1000);  
+
+    // Scale reload value and increment prescaler if necessary
+    while (iwdg_rl > 4095 && iwdg_pr < 6)
     {
+        iwdg_pr++;
+        iwdg_rl >>= 1;
     }
 
+    __disable_irq(); 
+
+    IWDG->KR = 0xCCCC;  // Start the watchdog
+    IWDG->KR = 0x5555;  // Unlock registers for configuration
+
+    // Wait for the IWDG to be ready, with a timeout to avoid indefinite blocking
+    uint32_t timeout_counter = 10000;  // Arbitrary loop limit to prevent lock-up
+    while ((IWDG->SR & (IWDG_SR_WVU | IWDG_SR_RVU | IWDG_SR_PVU)) && timeout_counter--)
+    {
+        if (timeout_counter == 0)
+        {
+            __enable_irq();
+            return -1;       // Return error if watchdog configuration takes too long
+        }
+    }
+
+    // Apply the calculated prescaler and reload value
     IWDG->PR = iwdg_pr;
-    IWDG->RLR = iwdg_rl -1;
-    IWDG->KR = 0xaaaa;
+    IWDG->RLR = iwdg_rl - 1;
+
+    // Refresh the watchdog to prevent an immediate reset
+    IWDG->KR = 0xAAAA;
+    
+    __enable_irq();
+
+    return 0;  // Return 0 to indicate success
 }

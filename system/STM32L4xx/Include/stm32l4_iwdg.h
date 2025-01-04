@@ -34,18 +34,20 @@
 #include "stm32l4xx.h"
 
 #ifdef __cplusplus
- extern "C" {
+extern "C" {
 #endif
 
+// Enable and configure the IWDG with a specified timeout (in milliseconds)
 extern void stm32l4_iwdg_enable(uint32_t timeout);
 
+// Reset the watchdog timer (feed the watchdog)
 static inline void stm32l4_iwdg_reset(void)
 {
-    IWDG->KR = 0xaaaa;
+    IWDG->KR = 0xAAAA;
 }
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* _STM32L4_NVIC_H */
+#endif /* _STM32L4_IWDG_H */

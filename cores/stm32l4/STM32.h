@@ -73,7 +73,7 @@ public:
     void  shutdown(uint32_t pin, uint32_t mode, uint32_t timeout = 0);
     void  reset();
 
-    void  wdtEnable(uint32_t timeout);
+    int  wdtEnable(uint32_t timeout);
     void  wdtReset();
 
     bool  flashErase(uint32_t address, uint32_t count);

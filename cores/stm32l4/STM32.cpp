@@ -203,7 +203,7 @@ void STM32Class::reset()
     stm32l4_system_reset();
 }
 
-void  STM32Class::wdtEnable(uint32_t timeout)
+int  STM32Class::wdtEnable(uint32_t timeout)
 {
     stm32l4_iwdg_enable(timeout);
 }
